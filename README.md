@@ -1,21 +1,30 @@
-# The Absel Funding – React + Express (no database)
-Pages: Home, Trading Rules, Affiliate Program, Contact Us, plus Login/Sign up.
+# The Absel Funding (TAF)
+React (Vite) site + serverless API. Deploys to **Vercel** with no extra server.
+
+```
+client/   React site (Home, Trading Rules, Affiliate, Contact, Login/Sign up)
+api/      Vercel serverless functions: /api/contact, /api/auth/login, /api/auth/signup
+server/   Local dev server only (runs the same /api code on :5000). Not used on Vercel.
+```
 
 ## Run locally
 1. `npm run install:all`
-2. `cp .env.example server/.env` and fill it in
-3. `npm run dev`  → site on http://localhost:5173, API on :5000
+2. `cp server/.env.example server/.env` and fill it in (see GOOGLE_CLOUD_SETUP.md)
+3. `npm run dev` → site on http://localhost:5173
 
-## Production
-`npm run build` then `npm start` (Express serves client/dist and the API on one port).
+## Deploy to Vercel
+1. Push this folder to GitHub and import the repo in Vercel (leave the root directory as is; `vercel.json` has all settings).
+2. Project → Settings → Environment Variables, add (Production + Preview):
+   `GOOGLE_SHEET_ID`, `GOOGLE_SHEET_TAB`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`
+   (paste the key exactly as in the JSON, including the `\n`), optional `SHEET_TIMEZONE`,
+   and `CRM_LOGIN_URL`, `CRM_SIGNUP_URL`, `CRM_API_KEY`, `VITE_CRM_CHECKOUT_URL` if you use the CRM.
+3. Deploy. Redeploy after changing any variable.
 
-## Contact form (no database)
-Each message is appended as a row to a Google Sheet in your Drive through a small Google Apps Script
-(`server/google-apps-script.gs`). Put its URL in `GOOGLE_SCRIPT_URL` (and optionally `GOOGLE_SCRIPT_SECRET`).
-Step-by-step guide: **[GOOGLE_SHEET_SETUP.md](GOOGLE_SHEET_SETUP.md)**.
+Note: do not use `GOOGLE_SERVICE_ACCOUNT_FILE` on Vercel (that is for local use only).
+
+## Contact form
+Validated in the browser and again on the server (name, email, phone with country code, message),
+then appended to your Google Sheet through the Google Sheets API using a Google Cloud service account.
 
 ## CRM
-Login and sign up are relayed to CRM_LOGIN_URL / CRM_SIGNUP_URL (JSON POST: `{email,password}` and `{name,email,password,ref}`).
-The server accepts a response with `token` (or `accessToken`), `user` and an optional `redirect`; tell me the CRM's real
-response shape and I'll match it. Optional client env `VITE_CRM_CHECKOUT_URL` sends "Buy plan" to the CRM checkout.
-Affiliate links: share `https://yoursite.com/?ref=CODE`; the code is passed to the CRM on sign up.
+Login and sign up are relayed to `CRM_LOGIN_URL` / `CRM_SIGNUP_URL` (JSON POST). Affiliate links: `https://yoursite.com/?ref=CODE`.
