@@ -9,19 +9,27 @@ import affiliate from './pages/affiliate.html?raw'
 
 const CHECKOUT=import.meta.env.VITE_CRM_CHECKOUT_URL
 const Raw=memo(({h})=><div dangerouslySetInnerHTML={{__html:h}}/>)
+const SZ=['5K','10K','25K','50K','78K','100K']
+const FEE='Refunded after 3rd payout'
 const PLANS=[
- {n:'1-Step Plan',d:'One step to get funded',p:[['2K',49],['6K',99],['15K',149],['25K',299],['50K',499]]},
- {n:'2-Step Plan',d:'Two steps for bigger capital',hot:1,p:[['6K',79],['15K',129],['25K',179],['50K',249],['100K',399]]}]
+ {n:'1-Step',t:'Funding fast',p:[42,69,149,249,339,399],r:[['Profit target','8%'],['Max daily DD','6%'],['Max overall DD','10%'],['Profit split','70 / 80 / 90%'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
+ {n:'2-Step',t:'Industry standard',p:[35,59,129,219,270,349],r:[['Phase 1 target','8%'],['Phase 2 target','5%'],['Max daily DD','6%'],['Max overall DD','10%'],['Time limit','None'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
+ {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (live)','5%'],['Overall DD (live)','10%'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 14 days'],['Challenge fee','Non-refundable']]}]
 
 function Plans({openAuth}){
-  const [sel,setSel]=useState([2,2])
-  const buy=(i)=>{const q=PLANS[i].p[sel[i]]
-    CHECKOUT?location.href=`${CHECKOUT}?plan=${encodeURIComponent(PLANS[i].n)}&size=${q[0]}&price=${q[1]}`:openAuth('signup')}
-  return PLANS.map((x,i)=><div key={i} className={'card '+(x.hot?'hot':'')}>
-    {x.hot&&<span className="tag">Most popular</span>}
-    <h3>{x.n}</h3><p className="sub">{x.d}</p>
-    <div className="prices">{x.p.map((q,j)=><button key={j} aria-pressed={sel[i]===j} className={sel[i]===j?'sel':''} onClick={()=>setSel(s=>s.map((v,k)=>k===i?j:v))}>${q[0]}<small>${q[1]}</small></button>)}</div>
-    <button className="buy" onClick={()=>buy(i)}>Buy plan <i className="ar">&rarr;</i></button></div>)
+  const [m,setM]=useState(0),[z,setZ]=useState(2)
+  const x=PLANS[m],price=x.p[z]
+  const buy=()=>CHECKOUT?location.href=`${CHECKOUT}?plan=${encodeURIComponent(x.n+' Challenge')}&size=${SZ[z]}&price=${price}`:openAuth('signup')
+  return <>
+    <div className="tabs">
+      <div className="pills" role="group" aria-label="Challenge type">{PLANS.map((q,i)=><button key={i} aria-pressed={m===i} className={m===i?'on':''} onClick={()=>setM(i)}>{q.n}</button>)}</div>
+      <div className="pills" role="group" aria-label="Account size">{SZ.map((q,i)=><button key={i} aria-pressed={z===i} className={z===i?'on':''} onClick={()=>setZ(i)}>${q}</button>)}</div>
+    </div>
+    <div className="card pcard">
+      <div className="phead"><b>{x.n} Challenge</b><div className="pprice">${price}</div><span>{x.t}</span></div>
+      <dl>{x.r.map(([k,v])=><div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+      <button className="buy" onClick={buy}>Buy plan <i className="ar">&rarr;</i></button>
+    </div></>
 }
 function HomePage({openAuth}){
   const [slot,setSlot]=useState(null)
@@ -95,7 +103,7 @@ export default function App(){
     if(a)setMode(a.dataset.auth);if(g){e.preventDefault();document.getElementById(g.dataset.go)?.scrollIntoView()}}
     document.addEventListener('click',h);return()=>document.removeEventListener('click',h)},[])
   const logout=()=>{localStorage.removeItem('taf_token');localStorage.removeItem('taf_user');setUser(null)}
-  const logo=(h)=><Link className="logo" to="/"><img src="/logo.webp" alt="TAF – The Absel Funding" height={h} style={{height:h}}/></Link>
+  const logo=(h)=><Link className="logo" to="/"><img src="/logo-v2.webp" alt="TAF – The Absel Funding" width={Math.round(h*3.3)} height={h} style={{height:h}}/></Link>
   return <>
     <header><div className="wrap">{logo(54)}
       <nav className={open?'open':''} aria-label="Main">

@@ -63,6 +63,20 @@ function client() {
   return jwt;
 }
 
+// Google Sheets allows ~60 writes/min per user; retry briefly on 429/5xx so a traffic burst does not lose leads.
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+async function withRetry(fn, tries = 3) {
+  for (let i = 1; ; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      const st = e.response?.status || e.status;
+      if (i >= tries || !(st === 429 || st >= 500)) throw e;
+      await wait(400 * 2 ** (i - 1) + Math.random() * 250);
+    }
+  }
+}
+
 async function ensureHeader() {
   if (headerReady) return;
   const r = await client().request({ url: `${base()}/${range("A1:E1")}` });
@@ -82,11 +96,14 @@ export async function appendContact({ name, email, phone, message }) {
     timeZone: process.env.SHEET_TIMEZONE || "Asia/Kolkata",
   });
   // RAW = stored exactly as typed (phone keeps its "+", "=formulas" never run)
-  await client().request({
-    url: `${base()}/${range("A:E")}:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`,
-    method: "POST",
-    data: { values: [[time, name, email, phone, message]] },
-  });
+  await withRetry(() =>
+    client().request({
+      url: `${base()}/${range("A:E")}:append?valueInputOption=RAW&insertDataOption=INSERT_ROWS`,
+      method: "POST",
+      data: { values: [[time, name, email, phone, message]] },
+      timeout: 8000,
+    }),
+  );
 }
 
 // Turn Google's error into one readable line (no HTML dumps).
