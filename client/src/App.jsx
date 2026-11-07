@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom'
 import {Routes,Route,NavLink,Link,useLocation} from 'react-router-dom'
 import {api} from './api.js'
 import {check,formatPhone,cleanPhone} from './validate.js'
+import {useFx} from './fx.js'
 import home from './pages/home.html?raw'
 import rules from './pages/rules.html?raw'
 import affiliate from './pages/affiliate.html?raw'
@@ -15,6 +16,20 @@ const PLANS=[
  {n:'1-Step',t:'Funding fast',p:[42,69,149,249,339,399],r:[['Profit target','8%'],['Max daily DD','6%'],['Max overall DD','10%'],['Profit split','70 / 80 / 90%'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
  {n:'2-Step',t:'Industry standard',p:[35,59,129,219,270,349],r:[['Phase 1 target','8%'],['Phase 2 target','5%'],['Max daily DD','6%'],['Max overall DD','10%'],['Time limit','None'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
  {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (live)','5%'],['Overall DD (live)','10%'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 14 days'],['Challenge fee','Non-refundable']]}]
+
+/* decorative parallax backdrop; hidden until fx.js activates it */
+const FxBg=memo(()=><div id="fx-bg" aria-hidden="true" hidden>
+  <div className="fx-scene"><img src="/track-wide.jpg" alt="" decoding="async" loading="lazy"/></div>
+  <div className="fx-shade"/><div className="fx-glow"/>
+  <div className="fx-rings">
+    <div className="fx-ring r1"><svg className="fx-spin" viewBox="0 0 1000 1000" fill="none" stroke="#cfcfd4"><circle cx="500" cy="500" r="486" strokeOpacity=".1"/><circle className="fx-tick" cx="500" cy="500" r="466" strokeWidth="12" strokeOpacity=".16" strokeDasharray="1.5 22.9"/><circle className="fx-tick" cx="500" cy="500" r="462" strokeWidth="20" strokeOpacity=".22" strokeDasharray="3 238.9"/></svg></div>
+    <div className="fx-ring r2"><svg className="fx-spin" viewBox="0 0 1000 1000" fill="none"><circle cx="500" cy="500" r="400" stroke="#cfcfd4" strokeOpacity=".09"/><circle cx="500" cy="500" r="400" stroke="#e50914" strokeOpacity=".24" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="700 1813"/></svg></div>
+    <div className="fx-ring r3"><svg className="fx-spin" viewBox="0 0 1000 1000" fill="none"><circle cx="500" cy="500" r="320" stroke="#cfcfd4" strokeOpacity=".1" strokeDasharray="1 11"/></svg></div>
+    <div className="fx-ring r4"><svg className="fx-spin" viewBox="0 0 1000 1000" fill="none" stroke="#cfcfd4"><circle cx="500" cy="500" r="240" strokeOpacity=".07"/><circle cx="500" cy="500" r="240" strokeOpacity=".14" strokeWidth="3" strokeDasharray="300 1208"/></svg></div>
+  </div>
+  <div className="fx-streaks"><i/><i/><i/></div>
+  <canvas className="fx-dust"/>
+</div>)
 
 function Plans({openAuth}){
   const [m,setM]=useState(0),[z,setZ]=useState(2)
@@ -102,9 +117,11 @@ export default function App(){
   useEffect(()=>{const h=(e)=>{const a=e.target.closest('[data-auth]'),g=e.target.closest('[data-go]')
     if(a)setMode(a.dataset.auth);if(g){e.preventDefault();document.getElementById(g.dataset.go)?.scrollIntoView()}}
     document.addEventListener('click',h);return()=>document.removeEventListener('click',h)},[])
+  useFx(loc.pathname)
   const logout=()=>{localStorage.removeItem('taf_token');localStorage.removeItem('taf_user');setUser(null)}
   const logo=(h)=><Link className="logo" to="/"><img src="/logo-v2.webp" alt="TAF – The Absel Funding" width={Math.round(h*3.3)} height={h} style={{height:h}}/></Link>
   return <>
+    <FxBg/>
     <header><div className="wrap">{logo(54)}
       <nav className={open?'open':''} aria-label="Main">
         <NavLink end to="/">Home</NavLink><NavLink to="/trading-rules">Trading Rules</NavLink>
@@ -129,6 +146,7 @@ export default function App(){
       </div>
       <button className="btn" data-auth="signup">Start challenge <i className="ar">&rarr;</i></button></div>
       <div className="wrap legal"><span>© 2026 The Absel Funding. All rights reserved.</span><span>Trading involves risk. Challenge accounts are simulated and past performance is not a guarantee of future results.</span><span>Trade. Grow. Earn.<span className="slash">//</span></span></div></footer>
+    {loc.pathname!=='/contact-us'&&<Link className="fx-fab" to="/contact-us" aria-label="Contact support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></Link>}
     <AuthModal mode={mode} setMode={setMode} onDone={setUser}/>
   </>
 }
