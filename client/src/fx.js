@@ -4,7 +4,7 @@
 import {useLayoutEffect} from 'react'
 
 const INNER=['/trading-rules','/affiliate-program','/contact-us']
-const SPOT='.card,.feat>div'
+const SPOT='.card,.feat>div,.bt'
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v))
 const root=()=>document.documentElement
 
@@ -190,12 +190,12 @@ function scanRoute(pathname){
   })
   q('main .pt h1').forEach(h=>tag(h,'up',0))
   q('main .eyebrow,main p.sub,.final p').forEach(el=>tag(el,'up',0))
-  group('main .card:not(.about),main .feat>div,main .strip>div,main .steps>li,main details','pop')
+  group('main .card:not(.about),main .feat>div,main .bt,main .strip>div,main .steps>li,main details','pop')
   q('main .about').forEach(el=>tag(el,'pop',0))
   q('.about p,.about>.btn').forEach((el,i)=>tag(el,'up',120+i*90))
   q('.final .btn').forEach(el=>tag(el,'up',160))
   q('.plan-grid,.certs').forEach(el=>tag(el,'up',0))
-  group('main .cmp tr','row',70,10)
+  group('main .cmp tr,main .vsrow','row',70,10)
   q('footer>.wrap').forEach((el,i)=>tag(el,'up',i*120))
 
   /* images: slide in from the side they sit on */
