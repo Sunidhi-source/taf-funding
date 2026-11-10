@@ -156,7 +156,7 @@ function scanRoute(pathname){
   const html=root()
   const bg=document.getElementById('fx-bg')
   if(!bg||!html.classList.contains('fx-ready')) return
-  bg.classList.toggle('is-inner',INNER.includes(pathname))
+  bg.classList.toggle('is-inner',INNER.some(p=>pathname===p||pathname.startsWith(p+'/')))
 
   const io=new IntersectionObserver(es=>{
     for(const e of es) if(e.isIntersecting){e.target.classList.add('fx-in');io.unobserve(e.target)}

@@ -1,11 +1,12 @@
 import {useEffect,useRef,useState,memo} from 'react'
 import {createPortal} from 'react-dom'
-import {Routes,Route,NavLink,Link,useLocation} from 'react-router-dom'
+import {Routes,Route,NavLink,Link,Navigate,useLocation,useParams} from 'react-router-dom'
 import {api} from './api.js'
 import {check,formatPhone,cleanPhone} from './validate.js'
 import {useFx} from './fx.js'
 import home from './pages/home.html?raw'
-import rules from './pages/rules.html?raw'
+import {RULES,ICONS} from './rulesData.js'
+import {CONTACT} from './contactInfo.js'
 import affiliate from './pages/affiliate.html?raw'
 
 const CHECKOUT=import.meta.env.VITE_CRM_CHECKOUT_URL
@@ -52,6 +53,54 @@ function HomePage({openAuth}){
   return <><Raw h={home}/>{slot&&createPortal(<Plans openAuth={openAuth}/>,slot)}</>
 }
 
+const Ico=({d})=><svg className="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML={{__html:d}}/>
+const Chev=()=><svg className="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+const by='By The Absel Funding'
+function RulesHub(){
+  const {cat,art}=useParams()
+  const c=RULES.find(x=>x.id===cat)
+  if(cat&&!c)return <Navigate to="/trading-rules" replace/>
+  const a=c&&art&&c.articles.find(x=>x.id===art)
+  if(art&&!a)return <Navigate to={'/trading-rules/'+c.id} replace/>
+  const to=(x,y)=>'/trading-rules/'+x.id+(y?'/'+y.id:'')
+  if(a){const nx=c.articles[c.articles.indexOf(a)+1]
+    return <section className="hc"><div className="wrap hc-narrow">
+      <div className="crumbs" role="navigation" aria-label="Breadcrumb"><Link to="/trading-rules">Trading rules</Link><i>›</i><Link to={to(c)}>{c.title}</Link></div>
+      <article className="hc-art"><div className="hc-arthead"><span className="ic"><Ico d={ICONS[c.icon]}/></span><div><h1>{a.title}</h1><p>{by} · {c.title}</p></div></div>
+        <div className="hc-body" dangerouslySetInnerHTML={{__html:a.body}}/></article>
+      <div className="hc-foot">{nx?<Link className="hc-next" to={to(c,nx)}><small>Next article</small><b>{nx.title}</b></Link>:<span/>}
+        <Link className="btn" to={to(c)}>&larr; Back to {c.title}</Link></div>
+      <p className="hc-help">Still need help? <Link to="/contact-us">Contact our support team</Link>.</p></div></section>}
+  if(c)return <section className="hc"><div className="wrap hc-narrow">
+      <div className="crumbs" role="navigation" aria-label="Breadcrumb"><Link to="/trading-rules">Trading rules</Link></div>
+      <div className="hc-cathead"><span className="ic big"><Ico d={ICONS[c.icon]}/></span><div><h1>{c.title}</h1><p>{c.sub}</p></div><em>{c.articles.length} article{c.articles.length>1?'s':''}</em></div>
+      <div className="hc-list">{c.articles.map(x=><Link key={x.id} className="hc-row" to={to(c,x)}><span>{x.title}</span><Chev/></Link>)}</div>
+      <p className="hc-help">Can’t find what you need? <Link to="/contact-us">Contact our support team</Link>.</p></div></section>
+  return <>
+    <section className="hc-hero"><div className="wrap hc-herogrid">
+      <div><h1><span className="t1">Know the rules</span><span className="red">before you trade</span></h1>
+        <p className="sub">Our guidelines keep every evaluation fair, transparent and focused on performance. Browse the topics below, or reach out if you need a hand.</p>
+        <Link className="btn p" to="/contact-us">Contact us <i className="ar">&rarr;</i></Link></div>
+      <img className="side-img" src="/car-rear.jpg" alt="" loading="lazy"/></div></section>
+    <section className="hc"><div className="wrap">
+      <div className="hc-banner"><h2>Hi there, what do you need help with today?</h2></div>
+      <div className="hc-grid">{RULES.map(x=><Link key={x.id} className="card hc-card" to={to(x)}>
+        <span className="ic"><Ico d={ICONS[x.icon]}/></span><h3>{x.title}</h3><p>{x.sub}</p>
+        <div className="meta"><img src="/favicon-v2.png" alt="" width="20" height="20"/><span>{by}</span><i>•</i><span>{x.articles.length} article{x.articles.length>1?'s':''}</span></div></Link>)}</div></div></section></>
+}
+
+const CI={
+  email:{l:'Email us',d:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',h:v=>'mailto:'+v},
+  address:{l:'Visit us',d:'<path d="M12 21s7-6.200 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/>'},
+  phone:{l:'Call us',d:'<path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',h:v=>'tel:'+v.replace(/[^\d+]/g,'')},
+  whatsapp:{l:'WhatsApp',d:'<path d="M4 20l1.300-4A8 8 0 1 1 8 18.700z"/><path d="M9 9c0 3 3 6 6 6l1-1.500-2-1-1 .8c-.8-.4-1.600-1.200-2-2l.8-1-1-2z"/>',h:v=>'https://wa.me/'+v.replace(/\D/g,'')}
+}
+function ContactCards(){
+  return <div className="ct-cards">{Object.keys(CI).filter(k=>CONTACT[k]).map(k=>{const i=CI[k],v=CONTACT[k],T=i.h?'a':'div'
+    return <T key={k} className="card ct-card" {...(i.h?{href:i.h(v),...(k==='whatsapp'?{target:'_blank',rel:'noopener noreferrer'}:{})}:{})}>
+      <span className="ic"><svg className="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML={{__html:i.d}}/></span><small>{i.l}</small><b>{v}</b></T>})}</div>
+}
+
 function Field({id,label,hint,error,children}){
   return <div className={'field'+(error?' bad':'')}>{children}
     {error?<div className="e" id={id+'-e'}>{error}</div>:hint&&<div className="h">{hint}</div>}</div>
@@ -77,9 +126,10 @@ function Contact(){
       setM({t:"Message sent. We'll reply by email soon.",ok:true});setV({name:'',email:'',phone:'',message:'',website:''});setErr({})}
     catch(x){if(x.errors)setErr(x.errors);setM({t:x.message,ok:false})}
     setBusy(false)}
-  return <><div className="pt"><div className="wrap"><h1><span className="t1">Contact</span><span className="red">us</span></h1>
-    <p className="sub" style={{marginTop:12}}>Questions about plans, rules or payouts? Send a message and we'll reply by email.</p></div></div>
-    <section style={{border:0}}><div className="wrap" style={{maxWidth:680}}><div className="card">
+  return <><div className="pt ctr"><div className="wrap"><h1><span className="t1">Contact</span><span className="red">us</span></h1>
+    <p className="sub">We’re more than just a prop firm. Questions about plans, rules or payouts? Reach out and our team will get back to you.</p></div></div>
+    <section style={{border:0,paddingTop:36}}><div className="wrap"><ContactCards/>
+    <div className="ct-form"><div className="card">
     <h3 style={{marginBottom:18}}>Send us a message</h3>
     <form onSubmit={submit} noValidate>
       <Field id="name" error={err.name}><input name="name" value={v.name} onChange={set('name')} onBlur={blur('name')} placeholder="Full name" autoComplete="name" maxLength={80} aria-invalid={!!err.name} aria-describedby="name-e"/></Field>
@@ -89,7 +139,7 @@ function Contact(){
       <input className="hp" name="website" value={v.website} onChange={set('website')} tabIndex={-1} autoComplete="off" aria-hidden="true"/>
       <button className="btn p" disabled={busy} style={{padding:15,borderRadius:999,fontSize:'1rem'}}>{busy?'Sending…':'Send message'}</button>
       <div className={'msg '+(m.ok?'ok':'err')} role="status">{m.t}</div>
-    </form></div></div></section></>
+    </form></div></div></div></section></>
 }
 
 function AuthModal({mode,setMode,onDone}){
@@ -131,7 +181,7 @@ export default function App(){
       <button className="menu" aria-label="Menu" aria-expanded={open} onClick={()=>setOpen(!open)}>☰</button></div></header>
     <main><Routes>
       <Route path="/" element={<HomePage openAuth={setMode}/>}/>
-      <Route path="/trading-rules" element={<Raw h={rules}/>}/>
+      <Route path="/trading-rules" element={<RulesHub/>}/><Route path="/trading-rules/:cat" element={<RulesHub/>}/><Route path="/trading-rules/:cat/:art" element={<RulesHub/>}/>
       <Route path="/affiliate-program" element={<Raw h={affiliate}/>}/>
       <Route path="/contact-us" element={<Contact/>}/>
       <Route path="*" element={<HomePage openAuth={setMode}/>}/>
