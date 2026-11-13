@@ -632,6 +632,11 @@ html.fx-ready .vsrow:hover{background:linear-gradient(90deg,rgba(229,9,20,.06),t
 .hc-body table{width:100%;border-collapse:collapse}
 .hc-body th,.hc-body td{padding:13px 16px;text-align:left;border-bottom:1px solid #1e1e1f}
 .hc-body th{color:var(--mut);font-weight:500;font-size:.88rem}
+.dd{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0 0 18px}
+.dd>div{padding:20px 22px;border:1px solid #3a1316;border-radius:14px;background:linear-gradient(160deg,rgba(229,9,20,.18),rgba(229,9,20,.03))}
+.dd small{display:block;color:var(--mut);font-size:.82rem}
+.dd strong{display:block;margin:4px 0 2px;font-size:2.2rem;line-height:1;color:#fff;font-weight:800}
+.dd span{color:var(--mut);font-size:.78rem}
 .hc-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:22px}
 .hc-next{display:block;max-width:60%;padding:14px 20px;border:1px solid var(--line);border-radius:12px;transition:border-color .2s}
 .hc-next:hover{border-color:var(--red)}
@@ -678,6 +683,7 @@ html.fx-ready .ct-card{overflow:visible}
  .hc-grid,.aff-cards{grid-template-columns:1fr}
  .hc-art{padding:24px 20px}
  .hc-cathead{flex-wrap:wrap;padding:20px}.hc-cathead em{margin-left:0;width:100%}
+ .dd{grid-template-columns:1fr}
  .hc-foot{flex-direction:column;align-items:stretch}.hc-next{max-width:none}
  .rk{grid-template-columns:1fr;padding:22px}.soon{width:140px}
  .ranks li{gap:14px}.ranks li:not(:last-child):before{left:18px;top:64px}.rk-n{width:38px;height:38px}

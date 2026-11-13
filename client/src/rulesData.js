@@ -12,6 +12,7 @@ export const ICONS={
 }
 
 const note=(t,x)=>`<div class="note"><b>${t}</b><p>${x}</p></div>`
+const dd=(a)=>`<div class="dd">${a.map(([l,v,n])=>`<div><small>${l}</small><strong>${v}</strong><span>${n}</span></div>`).join('')}</div>`
 const ex=(t,x)=>`<div class="note ex"><b>${t}</b><p>${x}</p></div>`
 
 export const RULES=[
@@ -71,102 +72,86 @@ export const RULES=[
   <ul><li>Upload high-quality images or scans.</li><li>Ensure documents are valid and not expired.</li><li>Double-check that names and addresses match exactly.</li><li>Submit complete documents with all corners visible.</li></ul>`}
 ]},
 
-{id:'one-step',icon:'one',title:'One-Step Challenge',sub:'8% profit target',articles:[
- {id:'phase-1',title:'Phase 1: Verification',body:`
-  <p>The One-Step Challenge evaluates trading discipline, consistency, and risk management before capital allocation.</p>
-  <h3>Trading objectives</h3>
-  <ul><li>Achieve an 8% profit target.</li><li>Follow all trading rules.</li><li>Respect the applicable drawdown rules.</li></ul>
-  <p>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</p>
-  <h3>Stage-up review</h3>
-  <p>A 24-hour review applies to all stage upgrades.</p>`},
- {id:'drawdown',title:'Drawdown limits',body:`
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static).</li><li><b>Daily drawdown:</b> 6%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000. The account balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}`},
- {id:'single-trade-risk',title:'Single-trade risk',body:`
-  <p>A trader may risk up to 10% of the maximum drawdown allowance in one trade.</p>
-  ${ex('Example','For a $100,000 account, the 10% maximum drawdown allowance is $10,000. The maximum risk per trade under this rule is $1,000.')}`}
-]},
-
-{id:'two-step',icon:'two',title:'Two-Step Challenge',sub:'Two evaluation phases',articles:[
- {id:'phases',title:'Phase 1 and Phase 2',body:`
-  <p>The Two-Step Challenge consists of two evaluation phases. Traders must successfully complete both phases to qualify for a funded account. Each phase assesses trading discipline, consistency, and risk management.</p>
-  <h3>Phase 1: Performance evaluation</h3>
-  <ul><li>Achieve an 8% profit target.</li><li>Follow all trading rules.</li><li>Respect the maximum drawdown rules.</li></ul>
-  <p>After completing Phase 1, the account enters a 24-hour review period. Once approved, the trader advances to Phase 2.</p>
-  <h3>Phase 2: Verification</h3>
-  <ul><li>Achieve a 5% profit target.</li><li>Continue following all trading rules.</li></ul>
-  <p>After Phase 2 is completed, the account undergoes another 24-hour review before funding. A 24-hour review applies to every stage upgrade.</p>`},
- {id:'drawdown',title:'Drawdown limits',body:`
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static).</li><li><b>Daily drawdown:</b> 5%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 5% daily loss allowance equals $5,000, subject to the firm’s official daily calculation and reset method.')}`},
- {id:'single-trade-risk',title:'Single-trade risk',body:`
-  <p>A trader may risk up to 10% of the total maximum drawdown allowance in one trade. Exceeding this limit may be treated as a violation.</p>
-  ${ex('Example','For a $100,000 account with a $10,000 maximum drawdown allowance, the maximum risk per trade is $1,000.')}`}
-]},
-
-{id:'general-rules',icon:'rules',title:'General Trading Rules',sub:'Breaches and behaviour',articles:[
- {id:'hard-breach-layering',title:'Hard breach and layering',body:`
-  <h3>Hard breach: account violation</h3>
-  <p>A hard breach is a serious violation and results in immediate account termination.</p>
-  <h3>Layering</h3>
-  <p>Opening more than three positions on the same instrument in the same direction at the same time is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation.</p>`},
- {id:'soft-breach',title:'Soft breach and toxic trading behaviour',body:`
-  <h3>Soft breach: trading behaviour</h3>
-  <p>A soft breach may lead to review, restrictions, or further action. Repeated violations may result in restrictions or account termination.</p>
-  <h3>Toxic trading behaviour</h3>
-  <ul><li>Ignoring risk management.</li><li>Reckless trading behaviour.</li><li>Trading without a clear strategy.</li><li>Emotion-driven trading.</li></ul>`},
- {id:'excessive-risk',title:'Excessive risk-taking and over-leveraging',body:`
-  <ul><li>Using disproportionately large position sizes.</li><li>Repeatedly using maximum lot sizes.</li><li>Taking trades that can damage the account quickly.</li><li>Relying excessively on leverage.</li></ul>`},
- {id:'martingale',title:'Martingale trading',body:`
-  <p>Martingale trading means increasing position size after losses in an attempt to recover drawdown. Examples include doubling lot size after a loss, re-entering with a larger lot size after a losing trade, or progressively increasing risk after losses.</p>
-  <p>Martingale behaviour is identified as a soft breach during the challenge phase. Traders are expected to maintain consistent risk per trade.</p>`},
- {id:'news-trading',title:'News trading',body:`
-  <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased volatility. There are no timing restrictions around news events.</p>
-  <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>`},
- {id:'tick-scalping',title:'Tick scalping',body:`
-  <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including trades opened and closed within 120 seconds and high-frequency micro-scalping.</p>
-  <p>Up to 20% of total trades may be ignored. Trades beyond this allowance may be reviewed.</p>`},
- {id:'overtrading-gambling',title:'Overtrading and gambling behaviour',body:`
-  <h3>Overtrading</h3>
-  <ul><li>Placing too many trades in a short period.</li><li>Entering repeatedly without confirmation.</li><li>Emotion-driven execution or trading to recover losses.</li></ul>
-  <h3>Gambling behaviour</h3>
-  <ul><li>Random entries without analysis.</li><li>Revenge trading.</li><li>Emotional trading.</li><li>Overtrading to recover losses.</li></ul>`},
- {id:'reverse-one-sided',title:'Reverse trading and one-sided bias',body:`
-  <h3>Reverse trading</h3>
-  <p>Examples include intentionally losing trades, offsetting trades across accounts, or manipulating exposure. Trades placed within 15 minutes to neutralize exposure may be flagged.</p>
-  <h3>One-sided bias trading</h3>
-  <p>Repeatedly trading in only one direction without clear justification may trigger a review.</p>`},
- {id:'hedging',title:'Hedging (Two-Step Challenge)',body:`
-  <p>Improper hedging may include opening opposite trades on the same instrument or locking positions to remove market exposure. Such activity may be reviewed under the applicable trading rules.</p>`}
-]},
-
-{id:'limitless',icon:'inf',title:'Limitless Challenge',sub:'Evaluation rules',articles:[
- {id:'challenge-structure',title:'Challenge structure',body:`
-  <p>The Limitless Challenge is designed for traders who want maximum freedom during evaluation. It has one evaluation phase, no time limit, and no challenge-stage daily or maximum drawdown limit.</p>
-  ${note('Trade freely. Prove your consistency.','The Limitless Challenge gives you the freedom to pursue a 10% profit target at your own pace, without challenge-stage drawdown limits or time pressure. Focus on your strategy and demonstrate consistent performance.')}
+{id:'rules-and-guidelines',icon:'rules',title:'Trading Rules & Guidelines',sub:'One-Step, Two-Step & Limitless',articles:[
+ {id:'one-step-challenge-model',title:'The Absel Funding — One-Step Challenge Model',body:`
+  <p>The following rules apply to The Absel Funding One-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
+  <h3>Drawdown rules</h3>
+  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','6%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 6%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000. The account balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}
+  <h3>Maximum floating loss: funded phase only</h3>
+  ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
+  <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
+  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions reach a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  <h3>Layering: hard breach</h3>
+  <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach during both evaluation phases.</p>
+  <h3>News trading</h3>
+  <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
+  <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
+  <h3>Weekend holding: prior approval required</h3>
+  <p>Weekend holding is allowed in both challenge and funded phases, provided the trader obtains prior approval.</p>
+  <ul><li>Before the market closes on Friday, email support or contact live support to inform the team that positions will remain open over the weekend.</li><li>Positions may remain open beyond Friday’s market close and may be managed when the market reopens, provided approval has been granted.</li><li>Failure to notify support before the Friday market close will result in a hard breach and account termination, according to the supplied policy.</li></ul>
+  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 10% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
+  <h3>Tick scalping</h3>
+  <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
+  <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
+  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Challenge structure</h3>
-  <ul><li><b>Evaluation phases:</b> One phase only.</li><li><b>Profit target:</b> 10%.</li><li><b>Time limit:</b> No time limit to pass the challenge.</li><li><b>Challenge drawdown:</b> No daily drawdown limit and no maximum drawdown limit during evaluation.</li></ul>
-  <p>The Limitless Challenge removes challenge-stage drawdown restrictions. Once funded, however, the live account is governed by the live-account rules.</p>`}
-]},
+  <ul><li>Achieve an 8% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>`},
 
-{id:'limitless-live',icon:'live',title:'Limitless Live Account Rules',sub:'After you are funded',articles:[
- {id:'live-drawdown',title:'Drawdown limits',body:`
-  <p>After passing the Limitless Challenge, the trader’s live funded account is subject to the following requirements.</p>
-  <ul><li><b>Daily drawdown:</b> 5%.</li><li><b>Maximum drawdown:</b> 10%.</li></ul>
-  ${note('Important distinction','There are no daily or maximum drawdown limits during the Limitless evaluation. Once the account is live and funded, a 5% daily drawdown limit and a 10% maximum drawdown limit apply.')}`},
- {id:'single-trade-floating-risk',title:'Single-trade and floating risk',body:`
-  <ul><li>A trader may not risk more than 2% in a single trade.</li><li>Total open floating risk must not exceed 3% at any time.</li></ul>
-  <p>These limits apply to the live funded account. Traders should account for combined exposure across open positions.</p>`},
- {id:'live-tick-scalping',title:'Tick scalping: not allowed',body:`
-  <p>Tick scalping is not allowed on the live account. Each trade must be held for at least 120 seconds before it is closed.</p>`},
- {id:'weekend-holding',title:'Weekend holding',body:`
-  <p>Positions may not be held over the weekend unless permission has been obtained in advance. If you wish to hold a position over the weekend, contact the support team or email The Absel Funding to request approval.</p>`},
- {id:'inactivity',title:'Inactivity policy',body:`
-  <p>A live account with no trading activity for 30 consecutive days will be closed. Traders should maintain activity to keep their accounts active.</p>`},
- {id:'live-martingale',title:'Martingale: not allowed',body:`
-  <p>Martingale trading is prohibited on the live account. Position size must not be increased on the same instrument after a losing trade as a recovery method.</p>
-  ${ex('Example: same instrument','If you lose a trade using 1.00 lot on EUR/USD, you must not increase the next EUR/USD position to 1.50 lots as an attempt to recover the loss.')}
-  <p>This restriction applies to the same trading pair. You may trade a different pair; for example, a loss on EUR/USD does not automatically prevent you from opening a trade on GBP/USD. All other risk limits still apply.</p>`}
+ {id:'two-step-challenge-model',title:'The Absel Funding — Two-Step Challenge Model',body:`
+  <p>The following rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
+  <h3>Drawdown rules</h3>
+  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','5%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 5%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 5% daily loss allowance equals $5,000, subject to the firm’s official daily calculation and reset method.')}
+  <h3>Maximum floating loss: funded phase only</h3>
+  ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
+  <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
+  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions reach a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  <h3>Layering: hard breach</h3>
+  <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach during both evaluation phases.</p>
+  <h3>News trading</h3>
+  <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
+  <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
+  <h3>Weekend holding: prior approval required</h3>
+  <p>Weekend holding is allowed in both challenge and funded phases, provided the trader obtains prior approval.</p>
+  <ul><li>Before the market closes on Friday, email support or contact live support to inform the team that positions will remain open over the weekend.</li><li>Positions may remain open beyond Friday’s market close and may be managed when the market reopens, provided approval has been granted.</li><li>Failure to notify support before the Friday market close will result in a hard breach and account termination, according to the supplied policy.</li></ul>
+  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 10% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
+  <h3>Tick scalping</h3>
+  <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
+  <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
+  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
+  <h3>Challenge structure</h3>
+  <p>Traders must successfully complete both phases to qualify for a funded account.</p>
+  <ul><li><b>Phase 1: Performance evaluation.</b> Achieve an 8% profit target, follow all trading rules and respect the maximum drawdown rules. After completing Phase 1, the account enters a 24-hour review period. Once approved, the trader advances to Phase 2.</li><li><b>Phase 2: Verification.</b> Achieve a 5% profit target and continue following all trading rules. After Phase 2, the account undergoes another 24-hour review before funding.</li></ul>`},
+
+ {id:'limitless-challenge-model',title:'The Absel Funding — Limitless Challenge Model',body:`
+  <p>The following rules apply to the Limitless model’s live funded account.</p>
+  <h3>Drawdown rules</h3>
+  ${dd([['Maximum daily drawdown','5%','Live account · equity based'],['Maximum drawdown','10%','Live account · equity based']])}
+  <h3>Maximum daily drawdown: 5%</h3>
+  <p>If account equity falls below the permitted daily drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
+  ${ex('Example: $100,000 account','5% daily drawdown = $5,000.')}
+  <h3>Maximum drawdown: 10%</h3>
+  <p>If account equity falls below the permitted maximum drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
+  ${ex('Example: $100,000 account','10% maximum drawdown = $10,000.')}
+  <h3>Maximum floating loss: funded stage</h3>
+  <p>During the Funded Stage, a maximum floating-loss rule is enforced. Open trades (floating P&amp;L) must not exceed a loss of 2% of the funded account balance at any moment. Two positions running at the same time will be considered as a single trade.</p>
+  <p>If the floating loss reaches or goes beyond the stated threshold, it is a hard breach and the account will be immediately closed, even if the trade later recovers.</p>
+  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions show a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  <h3>Layering: hard breach</h3>
+  <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach.</p>
+  <h3>News trading</h3>
+  <p>News trading is fully allowed during both challenge phases and the funded stage. Traders may open, close, and manage positions during:</p>
+  <ul><li>High-impact news releases.</li><li>Economic announcements.</li><li>Central-bank speeches.</li><li>Periods of increased market volatility.</li></ul>
+  <p>There are no timing restrictions around news events. Traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. Standard account rules, including the maximum drawdown rule, continue to apply.</p>
+  <h3>Tick scalping</h3>
+  <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
+  <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
+  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
+  <h3>Challenge structure</h3>
+  <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`}
 ]},
 
 {id:'payouts',icon:'pay',title:'Payouts & Consistency Rule',sub:'Profit split and payouts',articles:[
