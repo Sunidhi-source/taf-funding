@@ -72,13 +72,8 @@ export const RULES=[
   <ul><li>Upload high-quality images or scans.</li><li>Ensure documents are valid and not expired.</li><li>Double-check that names and addresses match exactly.</li><li>Submit complete documents with all corners visible.</li></ul>`}
 ]},
 
-{id:'rules-and-guidelines',icon:'rules',title:'Trading Rules & Guidelines',sub:'One-Step, Two-Step & Limitless',articles:[
- {id:'one-step-challenge-model',title:'The Absel Funding — One-Step Challenge Model',body:`
+{id:'rules-and-guidelines',icon:'rules',title:'Trading Rules & Guidelines',sub:'One-Step, Two-Step & Limitless',articles:[{id:'one-step-challenge-model',title:'The Absel Funding — One-Step Challenge Model',body:`
   <p>The following rules apply to The Absel Funding One-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
-  <h3>Drawdown rules</h3>
-  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','6%','Subject to official daily calculation']])}
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 6%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000. The account balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}
   <h3>Maximum floating loss: funded phase only</h3>
   ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
   <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
@@ -101,10 +96,6 @@ export const RULES=[
 
  {id:'two-step-challenge-model',title:'The Absel Funding — Two-Step Challenge Model',body:`
   <p>The following rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
-  <h3>Drawdown rules</h3>
-  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','5%','Subject to official daily calculation']])}
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 5%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 5% daily loss allowance equals $5,000, subject to the firm’s official daily calculation and reset method.')}
   <h3>Maximum floating loss: funded phase only</h3>
   ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
   <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
@@ -128,14 +119,6 @@ export const RULES=[
 
  {id:'limitless-challenge-model',title:'The Absel Funding — Limitless Challenge Model',body:`
   <p>The following rules apply to the Limitless model’s live funded account.</p>
-  <h3>Drawdown rules</h3>
-  ${dd([['Maximum daily drawdown','5%','Live account · equity based'],['Maximum drawdown','10%','Live account · equity based']])}
-  <h3>Maximum daily drawdown: 5%</h3>
-  <p>If account equity falls below the permitted daily drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
-  ${ex('Example: $100,000 account','5% daily drawdown = $5,000.')}
-  <h3>Maximum drawdown: 10%</h3>
-  <p>If account equity falls below the permitted maximum drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
-  ${ex('Example: $100,000 account','10% maximum drawdown = $10,000.')}
   <h3>Maximum floating loss: funded stage</h3>
   <p>During the Funded Stage, a maximum floating-loss rule is enforced. Open trades (floating P&amp;L) must not exceed a loss of 2% of the funded account balance at any moment. Two positions running at the same time will be considered as a single trade.</p>
   <p>If the floating loss reaches or goes beyond the stated threshold, it is a hard breach and the account will be immediately closed, even if the trade later recovers.</p>
@@ -154,19 +137,30 @@ export const RULES=[
   <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`}
 ]},
 
-{id:'payouts',icon:'pay',title:'Payouts & Consistency Rule',sub:'Profit split and payouts',articles:[
- {id:'profit-split',title:'Profit split',body:`
-  <div class="scroll"><table><tr><th>Payout</th><th>Trader profit share</th></tr><tr><td>1st payout</td><td>70%</td></tr><tr><td>2nd payout</td><td>80%</td></tr><tr><td>3rd payout and onwards</td><td>90%</td></tr></table></div>`},
- {id:'payout-frequency',title:'Payout frequency',body:`
-  <p>Payouts are available every 25 days. Traders who purchase the applicable add-on may qualify for a 14-day payout cycle.</p>
-  <p>All payout requests remain subject to successful KYC verification, account review, and the applicable payout terms.</p>`},
- {id:'consistency-rule',title:'20% consistency rule explained',body:`
-  <p>The 20% consistency rule is designed to encourage steady performance rather than having a trader generate most of their total profit in one unusually large trading day.</p>
-  <p>Under this rule, the trader’s most profitable day must not account for more than 20% of the total profit being assessed for payout.</p>
-  ${ex('Example: how the 20% rule works','Suppose your total profit is $5,000. Twenty percent of $5,000 is $1,000. Your best profitable day should therefore be no more than $1,000. If your best day made $1,500, it represents 30% of your total profit, so you would need to generate additional profit on other days until the best day is no more than 20% of the total.')}
-  <p>The official calculation period and the treatment of losses follow the final payout terms.</p>
-  ${note('Keep your trading steady','Aim for repeatable performance, control your risk, and avoid relying on one unusually profitable day to meet your payout objective.')}`},
- {id:'consistency-addon',title:'Consistency rule add-on',body:`
-  <p>The 20% consistency rule can be removed by purchasing the applicable add-on, subject to the add-on terms.</p>`}
+{id:'drawdown-rules',icon:'rules',title:'Drawdown Rules',sub:'Daily and maximum drawdown limits',articles:[
+ {id:'one-step-drawdown-rules',title:'The Absel Funding — One-Step Drawdown Rules',body:`
+  <p>The following drawdown rules apply to The Absel Funding One-Step Challenge model, including the relevant funded stage.</p>
+
+  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','6%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 6%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000. The account balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}`},
+
+ {id:'two-step-drawdown-rules',title:'The Absel Funding — Two-Step Drawdown Rules',body:`
+  <p>The following drawdown rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage.</p>
+
+  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','5%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 5%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 5% daily loss allowance equals $5,000, subject to the firm’s official daily calculation and reset method.')}`},
+
+ {id:'limitless-drawdown-rules',title:'The Absel Funding — Limitless Drawdown Rules',body:`
+  <p>The following drawdown rules apply to the Limitless model’s live funded account.</p>
+
+  ${dd([['Maximum daily drawdown','5%','Live account · equity based'],['Maximum drawdown','10%','Live account · equity based']])}
+  <h3>Maximum daily drawdown: 5%</h3>
+  <p>If account equity falls below the permitted daily drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
+  ${ex('Example: $100,000 account','5% daily drawdown = $5,000.')}
+  <h3>Maximum drawdown: 10%</h3>
+  <p>If account equity falls below the permitted maximum drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
+  ${ex('Example: $100,000 account','10% maximum drawdown = $10,000.')}`}
 ]}
 ]
