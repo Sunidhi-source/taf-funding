@@ -162,5 +162,68 @@ export const RULES=[
   <h3>Maximum drawdown: 10%</h3>
   <p>If account equity falls below the permitted maximum drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
   ${ex('Example: $100,000 account','10% maximum drawdown = $10,000.')}`}
+]},
+
+{id:'withdrawals',icon:'pay',title:'Withdrawals',sub:'Payouts, requirements and timing',articles:[
+ {id:'minimum-withdrawal-amount',title:'Minimum withdrawal amount',body:`
+  <p>To ensure efficient processing and reduce transaction costs, The Absel Funding applies a minimum withdrawal requirement.</p>
+  <h3>Minimum withdrawal amount</h3>
+  <ul><li>Minimum withdrawal: 1% of the initial account size.</li><li>Withdrawal requests below this amount cannot be processed.</li><li>Profits and eligible balances may be combined to meet the minimum requirement.</li><li>Giveaway accounts: withdrawals are limited to 2% only.</li></ul>
+  ${note('Please note','The minimum withdrawal requirement is based on the initial account size. A request below the applicable threshold will not be processed.')}
+  <h3>Why is there a minimum withdrawal requirement?</h3>
+  <p>The minimum withdrawal requirement is intended to:</p>
+  <ul><li>Reduce administrative and processing overhead.</li><li>Minimize transaction and network fees.</li><li>Ensure a smoother payout experience for all traders.</li></ul>
+  <p>Larger, less frequent withdrawals help keep payout operations efficient and reliable.</p>`},
+
+ {id:'withdrawal-methods-and-profit-splits',title:'Withdrawal methods and profit splits',body:`
+  <h3>Withdrawal methods</h3>
+  <p>Available payout methods may include:</p>
+  <ul><li>Cryptocurrency (USDT and other supported crypto assets).</li><li>UPI transfers.</li><li>Bank transfers.</li><li>E-wallet payments, where available.</li></ul>
+  <p>Payment options may vary depending on the trader’s location, availability, and selected payout method.</p>
+  <h3>Profit split</h3>
+  <p>The Absel Funding offers a progressive profit split of 80%, 85%, and up to 90% across all account types.</p>
+  <p>Traders who consistently sustain the 90% level over multiple payouts may be considered for our upcoming Career Program. Top performers may be invited to trade from our physical office trading desk. The Career Program is coming soon and will be accessible through the platform.</p>`},
+
+ {id:'requirements-before-withdrawing',title:'Requirements before withdrawing',body:`
+  <p>Before submitting a withdrawal request, make sure all the following conditions are met:</p>
+  <ul><li>Your profit meets the minimum withdrawal requirement of 1% of the initial account size.</li><li>You have completed the minimum trading days on the funded account.</li><li>Your KYC verification is completed and approved.</li><li>Your account balance is above the starting balance.</li></ul>
+  ${note('Important withdrawal rule','Once a withdrawal request is submitted, no further trading activity is allowed on the account. Placing any trade after requesting a payout will be treated as a hard breach, and the account may be terminated.')}`},
+
+ {id:'withdrawal-processing-time',title:'How long does a withdrawal take?',body:`
+  <h3>Processing time</h3>
+  <p>Approved withdrawal requests are processed on weekdays (Monday to Friday) only. Once processed, the time required for funds to arrive depends on the selected payout method, such as crypto, UPI, bank transfer, or e-wallet.</p>
+  <p>Most payouts are completed within 24–48 hours after Wednesday processing.</p>
+  <h3>Possible delays</h3>
+  <p>In some cases, withdrawals may take longer due to:</p>
+  <ul><li>Weekends.</li><li>Public holidays.</li><li>Banking hours or payment-provider schedules.</li><li>Additional compliance or security checks.</li></ul>
+  <p>These delays may be outside The Absel Funding’s direct control.</p>
+  <h3>When does the processing time start?</h3>
+  <p>Withdrawal processing begins once all of the following conditions are satisfied:</p>
+  <ul><li>A withdrawal request has been submitted.</li><li>KYC verification is fully approved.</li><li>The trader has completed at least 5 trading days on the funded account.</li><li>The account meets the minimum withdrawal requirement (1% of the initial balance).</li><li>The account passes all risk and compliance checks.</li><li>No trades are placed after the withdrawal request; doing so is a hard breach.</li></ul>`}
+]},
+
+{id:'account-security-and-access-rules',icon:'live',title:'Account Security & Access Rules',sub:'IP policy and inactivity',articles:[
+ {id:'ip-address-policy',title:'IP address policy',body:`
+  <p>There are no IP-address location restrictions for traders. Traders may access their accounts from different locations, devices, or networks without violating account rules.</p>
+  <h3>Account access & security</h3>
+  <p>Although there are no IP-region restrictions, traders remain responsible for maintaining account security. The following practices are prohibited:</p>
+  <ul><li>Account sharing.</li><li>Unauthorized third-party access.</li><li>Selling or transferring account access.</li><li>Using compromised or stolen identities.</li></ul>
+  <p>If suspicious account activity is detected, the Risk Management Team may request identity verification to protect the account.</p>
+  <h3>Important notes</h3>
+  <ul><li>Traders may travel and trade freely without notifying Support.</li><li>Logging in from different networks or locations is allowed.</li><li>Using different devices is allowed.</li><li>Basic account-security monitoring still applies.</li></ul>
+  <p>This approach is designed to give traders flexibility while maintaining account safety.</p>`},
+
+ {id:'inactivity-policy',title:'Inactivity policy',body:`
+  <p>To ensure active participation and proper account usage, The Absel Funding enforces an inactivity rule across all account stages.</p>
+  <h3>Inactivity rule</h3>
+  <p>If a trading account remains inactive for 14 consecutive days, it will be treated as a hard breach and the account will be terminated.</p>
+  <p>This rule applies to:</p>
+  <ul><li>Phase 1 accounts.</li><li>Phase 2 accounts.</li><li>Funded accounts.</li></ul>
+  <h3>What counts as inactivity?</h3>
+  <p>An account is considered inactive if:</p>
+  <ul><li>No trades are placed.</li><li>No trading activity occurs.</li><li>The account remains idle for 14 continuous days.</li></ul>
+  <h3>How to avoid an inactivity breach</h3>
+  <ul><li>Place at least one trade within every 14-day period.</li><li>Maintain regular trading activity.</li></ul>
+  ${note('Important','Failure to meet this requirement will result in account termination due to inactivity.')}`}
 ]}
 ]
