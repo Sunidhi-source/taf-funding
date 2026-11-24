@@ -125,42 +125,29 @@ export const RULES=[
   <p>News trading is fully allowed during both challenge phases and the funded stage. Traders may open, close, and manage positions during:</p>
   <ul><li>High-impact news releases.</li><li>Economic announcements.</li><li>Central-bank speeches.</li><li>Periods of increased market volatility.</li></ul>
   <p>There are no timing restrictions around news events. Traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. Standard account rules continue to apply.</p>
-  ${WEEKEND}
-  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. Manage risk carefully when holding positions over the weekend.')}
+  <h3>Minimum Trading Days Policy</h3>
+  <p>A trading day will only count towards your minimum trading days requirement if you achieve at least 0.5% profit of your initial account balance on that trading day.</p>
+  <p>If your profit is below 0.5%, that day will not be counted as a valid trading day.</p>
+  <div class="note ex"><b>Example</b><p>For a $10,000 trading account:</p><ul><li>0.5% profit = $50</li><li>Profit of $50 or more in a day = 1 valid trading day</li><li>Profit of $30 in a day = Not counted</li><li>Profit of $0 or a loss = Not counted</li></ul></div>
+  ${note('Important','You must generate at least 0.5% profit in a single trading day for it to qualify towards your minimum trading days requirement.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
-  <h3>Challenge structure</h3>
-  <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`},
-
- {id:'rule-withdrawal-profit-split',title:'1. Withdrawal & Profit Split',body:`
-  <p>Withdrawal methods and profit-sharing percentages are shown separately below for easier reference.</p>
-  <h3>Withdrawal method</h3>
-  <p>Withdrawal methods remain unchanged. Please use the withdrawal method(s) currently available and approved for your account.</p>
-  <h3>Profit split</h3>
-  ${SPLIT}
-  <h3>Payout frequency</h3>
-  ${FREQ}`},
-
- {id:'rule-drawdown-rules',title:'2. Drawdown Rules',body:`
-  <p>Your account must remain within both the maximum overall drawdown and the maximum daily drawdown limits.</p>
-  <ul><li><b>1-Step:</b> Maximum drawdown 8% · Maximum daily drawdown 4%</li><li><b>2-Step:</b> Maximum drawdown 10% · Maximum daily drawdown 6%</li><li><b>Limitless Account:</b> No daily drawdown · No max drawdown (the account is breached only if it reaches 0)</li></ul>`},
-
- {id:'rule-weekend-holding',title:'3. Weekend Holding',body:`
-  ${WEEKEND}`},
-
- {id:'rule-floating-loss',title:'4. Floating Loss Rule',body:`
-  ${FLOAT}`},
-
- {id:'rule-consistency',title:'5. Consistency Rule',body:`
+  <h3>Consistency rule</h3>
   <p>No single trade may account for 20% or more of your total overall profit. Your profits should be generated consistently across multiple trades rather than relying too heavily on one trade.</p>
-  <p>(This rule can be removed by purchasing the applicable add-on.)</p>`},
-
- {id:'rule-big-loss-big-win',title:'6. Big Loss / Big Win Rule',body:`
+  <p>(This rule can be removed by purchasing the applicable add-on.)</p>
+  <h3>Big loss / big win rule</h3>
   <p>Before requesting a payout, your biggest winning trade must be greater than your biggest losing trade. In other words, your largest single-trade profit must exceed the amount of your largest single-trade loss.</p>
   ${ex('Example','If your biggest loss on a single trade is $200, you must record a winning trade of more than $200 on a single trade before requesting a payout. A $200 winning trade would not be enough; the winning amount must be greater than $200.')}
-  ${note('Important','These rules are a simplified guide for clarity. Where a rule depends on account type, add-on selection or the firm’s official terms, the applicable account agreement and dashboard conditions take precedence.')}`}
+  ${note('Important','These rules are a simplified guide for clarity. Where a rule depends on account type, add-on selection or the firm’s official terms, the applicable account agreement and dashboard conditions take precedence.')}
+  <h3>Challenge structure</h3>
+  <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`},
+]},
+
+{id:'weekend-holding',icon:'live',title:'Weekend Holding',sub:'Holding positions over the weekend',articles:[
+ {id:'weekend-holding',title:'Weekend Holding',body:`
+  ${WEEKEND}`}
 ]},
 
 {id:'drawdown-rules',icon:'rules',title:'Drawdown Rules',sub:'Daily and maximum drawdown limits',articles:[
@@ -179,13 +166,21 @@ export const RULES=[
   ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}`},
 
  {id:'limitless-drawdown-rules',title:'The Absel Funding — Limitless Drawdown Rules',body:`
-  <p>The following drawdown rules apply to the Limitless model’s live funded account.</p>
+  <p>The following drawdown rules apply to the Limitless model’s challenge phase account.</p>
 
   ${dd([['Maximum drawdown','None','Account is breached only if it reaches 0'],['Maximum daily drawdown','None','No daily drawdown']])}
   <h3>Maximum drawdown: None</h3>
   <p>There is no maximum drawdown limit. The account is breached only if it reaches 0.</p>
   <h3>Maximum daily drawdown: None</h3>
-  <p>There is no daily drawdown limit.</p>`}
+  <p>There is no daily drawdown limit.</p>
+  <h3>Live phase</h3>
+  <p>The following drawdown rules apply to the Limitless model’s live phase account.</p>
+  ${dd([['Maximum drawdown','10%','Maximum drawdown limit in the live phase'],['Maximum daily drawdown','5%','Maximum daily drawdown limit in the live phase']])}
+  <h3>Maximum drawdown: 10%</h3>
+  <p>The maximum drawdown limit in the live phase is 10%.</p>
+  <h3>Maximum daily drawdown: 5%</h3>
+  <p>The maximum daily drawdown limit in the live phase is 5%.</p>
+  ${note('In short','There is no drawdown limit in the challenge phase, but drawdown limits apply in the live phase.')}`}
 ]},
 
 {id:'withdrawals',icon:'pay',title:'Withdrawals',sub:'Payouts, requirements and timing',articles:[

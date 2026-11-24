@@ -62,14 +62,16 @@ function RulesHub(){
   if(cat&&!c)return <Navigate to="/trading-rules" replace/>
   const a=c&&art&&c.articles.find(x=>x.id===art)
   if(art&&!a)return <Navigate to={'/trading-rules/'+c.id} replace/>
+  if(c&&!art&&c.articles.length===1)return <Navigate to={'/trading-rules/'+c.id+'/'+c.articles[0].id} replace/>
   const to=(x,y)=>'/trading-rules/'+x.id+(y?'/'+y.id:'')
   if(a){const nx=c.articles[c.articles.indexOf(a)+1]
+    const solo=c.articles.length===1
     return <section className="hc"><div className="wrap hc-narrow">
-      <div className="crumbs" role="navigation" aria-label="Breadcrumb"><Link to="/trading-rules">Trading rules</Link><i>›</i><Link to={to(c)}>{c.title}</Link></div>
+      <div className="crumbs" role="navigation" aria-label="Breadcrumb"><Link to="/trading-rules">Trading rules</Link>{!solo&&<><i>›</i><Link to={to(c)}>{c.title}</Link></>}</div>
       <article className="hc-art"><div className="hc-arthead"><span className="ic"><Ico d={ICONS[c.icon]}/></span><div><h1>{a.title}</h1><p>{by} · {c.title}</p></div></div>
         <div className="hc-body" dangerouslySetInnerHTML={{__html:a.body}}/></article>
       <div className="hc-foot">{nx?<Link className="hc-next" to={to(c,nx)}><small>Next article</small><b>{nx.title}</b></Link>:<span/>}
-        <Link className="btn" to={to(c)}>&larr; Back to {c.title}</Link></div>
+        <Link className="btn" to={solo?'/trading-rules':to(c)}>&larr; Back to {solo?'Trading rules':c.title}</Link></div>
       <p className="hc-help">Still need help? <Link to="/contact-us">Contact our support team</Link>.</p></div></section>}
   if(c)return <section className="hc"><div className="wrap hc-narrow">
       <div className="crumbs" role="navigation" aria-label="Breadcrumb"><Link to="/trading-rules">Trading rules</Link></div>
@@ -84,7 +86,7 @@ function RulesHub(){
       <img className="side-img" src="/car-rear.jpg" alt="" loading="lazy"/></div></section>
     <section className="hc"><div className="wrap">
       <div className="hc-banner"><h2>Hi there, what do you need help with today?</h2></div>
-      <div className="hc-grid">{RULES.map(x=><Link key={x.id} className="card hc-card" to={to(x)}>
+      <div className="hc-grid">{RULES.map(x=><Link key={x.id} className="card hc-card" to={x.articles.length===1?to(x,x.articles[0]):to(x)}>
         <span className="ic"><Ico d={ICONS[x.icon]}/></span><h3>{x.title}</h3><p>{x.sub}</p>
         <div className="meta"><img src="/favicon-v2.png" alt="" width="20" height="20"/><span>{by}</span><i>•</i><span>{x.articles.length} article{x.articles.length>1?'s':''}</span></div></Link>)}</div></div></section></>
 }
