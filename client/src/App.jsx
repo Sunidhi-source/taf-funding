@@ -14,9 +14,9 @@ const Raw=memo(({h})=><div dangerouslySetInnerHTML={{__html:h}}/>)
 const SZ=['5K','10K','25K','50K','78K','100K']
 const FEE='Refunded after 3rd payout'
 const PLANS=[
- {n:'1-Step',t:'Funding fast',p:[42,69,149,249,339,399],r:[['Profit target','8%'],['Max daily DD','6%'],['Max overall DD','10%'],['Profit split','80 / 85 / 90%'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
- {n:'2-Step',t:'Industry standard',p:[35,59,129,219,270,349],r:[['Phase 1 target','8%'],['Phase 2 target','5%'],['Max daily DD','6%'],['Max overall DD','10%'],['Time limit','None'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every Friday'],['Challenge fee',FEE]]},
- {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (challenge phase)','None'],['Overall DD (challenge phase)','None'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 14 days'],['Challenge fee','Non-refundable']]}]
+ {n:'1-Step',t:'Funding fast',p:[42,69,149,249,339,399],r:[['Profit target','9%'],['Max daily DD','4%'],['Max overall DD','8%'],['Profit split','80 / 85 / 90%'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every 12 days'],['Challenge fee',FEE]]},
+ {n:'2-Step',t:'Industry standard',p:[35,59,129,219,270,349],r:[['Phase 1 target','8%'],['Phase 2 target','5%'],['Max daily DD','6%'],['Max overall DD','10%'],['Time limit','None'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every 12 days'],['Challenge fee',FEE]]},
+ {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (challenge phase)','None'],['Overall DD (challenge phase)','None'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 18 days (12 with add-on)'],['Challenge fee','Non-refundable']]}]
 
 /* decorative parallax backdrop; hidden until fx.js activates it */
 const FxBg=memo(()=><div id="fx-bg" aria-hidden="true" hidden>

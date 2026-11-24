@@ -15,6 +15,15 @@ const note=(t,x)=>`<div class="note"><b>${t}</b><p>${x}</p></div>`
 const dd=(a)=>`<div class="dd">${a.map(([l,v,n])=>`<div><small>${l}</small><strong>${v}</strong><span>${n}</span></div>`).join('')}</div>`
 const ex=(t,x)=>`<div class="note ex"><b>${t}</b><p>${x}</p></div>`
 
+const FLOAT=`<h3>Floating loss rule</h3>
+  <p>To manage risk, your floating loss must stay within the limits below:</p>
+  <ul><li><b>Single trade:</b> The floating loss on any one trade must not exceed 1% of your account capital.</li><li><b>Multiple open trades:</b> If you have more than one trade open, the combined floating loss across those trades must not exceed 2% of your account capital.</li></ul>
+  <p>Exceeding either applicable limit will result in an account breach.</p>`
+const WEEKEND=`<h3>Yes — Weekend Holding Is Allowed (With Prior Approval)</h3>
+  <ul><li>Traders are permitted to hold positions over the weekend in both challenge and funded phases, but prior approval is required.</li><li>To hold trades over the weekend, traders must email support / contact us for live support before the market closes on Friday informing the team that positions will remain open.</li><li>Failure to notify support before the Friday market close will result in a hard breach and account termination.</li><li>You may keep trades open beyond the market close on Friday and continue managing them when the market reopens, provided approval has been granted.</li></ul>`
+const SPLIT=`<ul><li><b>1-Step &amp; 2-Step Accounts:</b> First payout 80%, Second payout 85%, Third payout and thereafter 90% lifetime.</li><li><b>Limitless Account:</b> First payout 60%, Second payout 70%, Third payout and thereafter 90% lifetime.</li></ul>`
+const FREQ=`<ul><li><b>1-Step &amp; 2-Step Accounts:</b> Payouts are available every 12 days.</li><li><b>Limitless Account:</b> Payouts are available every 18 days. (12 days with the applicable add-on)</li></ul>`
+
 export const RULES=[
 {id:'about',icon:'about',title:'About The Absel Funding',sub:'Firm overview',articles:[
  {id:'what-is',title:'What is The Absel Funding?',body:`
@@ -74,40 +83,30 @@ export const RULES=[
 
 {id:'rules-and-guidelines',icon:'rules',title:'Trading Rules & Guidelines',sub:'One-Step, Two-Step & Limitless',articles:[{id:'one-step-challenge-model',title:'The Absel Funding — One-Step Challenge Model',body:`
   <p>The following rules apply to The Absel Funding One-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
-  <h3>Maximum floating loss: funded phase only</h3>
-  ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
-  <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
-  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions reach a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  ${FLOAT}
   <h3>Layering: hard breach</h3>
   <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach during both evaluation phases.</p>
   <h3>News trading</h3>
   <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
   <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
-  <h3>Weekend holding: prior approval required</h3>
-  <p>Weekend holding is allowed in both challenge and funded phases, provided the trader obtains prior approval.</p>
-  <ul><li>Before the market closes on Friday, email support or contact live support to inform the team that positions will remain open over the weekend.</li><li>Positions may remain open beyond Friday’s market close and may be managed when the market reopens, provided approval has been granted.</li><li>Failure to notify support before the Friday market close will result in a hard breach and account termination, according to the supplied policy.</li></ul>
-  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 10% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
+  ${WEEKEND}
+  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 8% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Challenge structure</h3>
-  <ul><li>Achieve an 8% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>`},
+  <ul><li>Achieve a 9% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>`},
 
  {id:'two-step-challenge-model',title:'The Absel Funding — Two-Step Challenge Model',body:`
   <p>The following rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
-  <h3>Maximum floating loss: funded phase only</h3>
-  ${note('Phase distinction','The 2% Maximum Floating Loss rule applies only during the Funded Phase. There is no 2% Maximum Floating Loss restriction during the Challenge Phase.')}
-  <p>During the Funded Phase, open trades (floating P&amp;L) must never reach or exceed a loss of 2% of the funded account balance at any moment. If floating loss reaches or exceeds this threshold, it is a hard breach and the funded account will be immediately closed, even if the position later recovers.</p>
-  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions reach a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  ${FLOAT}
   <h3>Layering: hard breach</h3>
   <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach during both evaluation phases.</p>
   <h3>News trading</h3>
   <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
   <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
-  <h3>Weekend holding: prior approval required</h3>
-  <p>Weekend holding is allowed in both challenge and funded phases, provided the trader obtains prior approval.</p>
-  <ul><li>Before the market closes on Friday, email support or contact live support to inform the team that positions will remain open over the weekend.</li><li>Positions may remain open beyond Friday’s market close and may be managed when the market reopens, provided approval has been granted.</li><li>Failure to notify support before the Friday market close will result in a hard breach and account termination, according to the supplied policy.</li></ul>
+  ${WEEKEND}
   ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 10% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
@@ -119,49 +118,74 @@ export const RULES=[
 
  {id:'limitless-challenge-model',title:'The Absel Funding — Limitless Challenge Model',body:`
   <p>The following rules apply to the Limitless model’s live funded account.</p>
-  <h3>Maximum floating loss: funded stage</h3>
-  <p>During the Funded Stage, a maximum floating-loss rule is enforced. Open trades (floating P&amp;L) must not exceed a loss of 2% of the funded account balance at any moment. Two positions running at the same time will be considered as a single trade.</p>
-  <p>If the floating loss reaches or goes beyond the stated threshold, it is a hard breach and the account will be immediately closed, even if the trade later recovers.</p>
-  ${ex('Example: $100,000 funded account','2% maximum floating loss = $2,000. If open positions show a floating loss of -$2,000 or more at any point, this results in a hard breach.')}
+  ${FLOAT}
   <h3>Layering: hard breach</h3>
   <p>Opening more than three positions on the same instrument in the same direction simultaneously is not allowed. Adding positions to a losing trade, grid trading, or recovery-based entries may be treated as a violation. This is a hard breach.</p>
   <h3>News trading</h3>
   <p>News trading is fully allowed during both challenge phases and the funded stage. Traders may open, close, and manage positions during:</p>
   <ul><li>High-impact news releases.</li><li>Economic announcements.</li><li>Central-bank speeches.</li><li>Periods of increased market volatility.</li></ul>
-  <p>There are no timing restrictions around news events. Traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. Standard account rules, including the maximum drawdown rule, continue to apply.</p>
+  <p>There are no timing restrictions around news events. Traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. Standard account rules continue to apply.</p>
+  ${WEEKEND}
+  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. Manage risk carefully when holding positions over the weekend.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Challenge structure</h3>
-  <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`}
+  <p>The Limitless Challenge has one evaluation phase, a 10% profit target, no time limit, and no daily or maximum drawdown limit during the evaluation. Once funded, the live-account rules above apply.</p>`},
+
+ {id:'rule-withdrawal-profit-split',title:'1. Withdrawal & Profit Split',body:`
+  <p>Withdrawal methods and profit-sharing percentages are shown separately below for easier reference.</p>
+  <h3>Withdrawal method</h3>
+  <p>Withdrawal methods remain unchanged. Please use the withdrawal method(s) currently available and approved for your account.</p>
+  <h3>Profit split</h3>
+  ${SPLIT}
+  <h3>Payout frequency</h3>
+  ${FREQ}`},
+
+ {id:'rule-drawdown-rules',title:'2. Drawdown Rules',body:`
+  <p>Your account must remain within both the maximum overall drawdown and the maximum daily drawdown limits.</p>
+  <ul><li><b>1-Step:</b> Maximum drawdown 8% · Maximum daily drawdown 4%</li><li><b>2-Step:</b> Maximum drawdown 10% · Maximum daily drawdown 6%</li><li><b>Limitless Account:</b> No daily drawdown · No max drawdown (the account is breached only if it reaches 0)</li></ul>`},
+
+ {id:'rule-weekend-holding',title:'3. Weekend Holding',body:`
+  ${WEEKEND}`},
+
+ {id:'rule-floating-loss',title:'4. Floating Loss Rule',body:`
+  ${FLOAT}`},
+
+ {id:'rule-consistency',title:'5. Consistency Rule',body:`
+  <p>No single trade may account for 20% or more of your total overall profit. Your profits should be generated consistently across multiple trades rather than relying too heavily on one trade.</p>
+  <p>(This rule can be removed by purchasing the applicable add-on.)</p>`},
+
+ {id:'rule-big-loss-big-win',title:'6. Big Loss / Big Win Rule',body:`
+  <p>Before requesting a payout, your biggest winning trade must be greater than your biggest losing trade. In other words, your largest single-trade profit must exceed the amount of your largest single-trade loss.</p>
+  ${ex('Example','If your biggest loss on a single trade is $200, you must record a winning trade of more than $200 on a single trade before requesting a payout. A $200 winning trade would not be enough; the winning amount must be greater than $200.')}
+  ${note('Important','These rules are a simplified guide for clarity. Where a rule depends on account type, add-on selection or the firm’s official terms, the applicable account agreement and dashboard conditions take precedence.')}`}
 ]},
 
 {id:'drawdown-rules',icon:'rules',title:'Drawdown Rules',sub:'Daily and maximum drawdown limits',articles:[
  {id:'one-step-drawdown-rules',title:'The Absel Funding — One-Step Drawdown Rules',body:`
   <p>The following drawdown rules apply to The Absel Funding One-Step Challenge model, including the relevant funded stage.</p>
 
-  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','6%','Subject to official daily calculation']])}
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 6%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000. The account balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}`},
+  ${dd([['Maximum drawdown','8%','Static · of initial account size'],['Daily drawdown','4%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 8% of the initial account size (static). The 8% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 4%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $8,000. The account balance or equity must not fall below $92,000. A 4% daily loss allowance equals $4,000, subject to the firm’s official daily calculation and reset method.')}`},
 
  {id:'two-step-drawdown-rules',title:'The Absel Funding — Two-Step Drawdown Rules',body:`
   <p>The following drawdown rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage.</p>
 
-  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','5%','Subject to official daily calculation']])}
-  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 5%.</li></ul>
-  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 5% daily loss allowance equals $5,000, subject to the firm’s official daily calculation and reset method.')}`},
+  ${dd([['Maximum drawdown','10%','Static · of initial account size'],['Daily drawdown','6%','Subject to official daily calculation']])}
+  <ul><li><b>Maximum drawdown:</b> 10% of the initial account size (static). The 10% maximum static drawdown rule applies at all times, including when positions are held over the weekend.</li><li><b>Daily drawdown:</b> 6%.</li></ul>
+  ${ex('Example: $100,000 account','Maximum loss allowance: $10,000, meaning balance or equity must not fall below $90,000. A 6% daily loss allowance equals $6,000, subject to the firm’s official daily calculation and reset method.')}`},
 
  {id:'limitless-drawdown-rules',title:'The Absel Funding — Limitless Drawdown Rules',body:`
   <p>The following drawdown rules apply to the Limitless model’s live funded account.</p>
 
-  ${dd([['Maximum daily drawdown','5%','Live account · equity based'],['Maximum drawdown','10%','Live account · equity based']])}
-  <h3>Maximum daily drawdown: 5%</h3>
-  <p>If account equity falls below the permitted daily drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
-  ${ex('Example: $100,000 account','5% daily drawdown = $5,000.')}
-  <h3>Maximum drawdown: 10%</h3>
-  <p>If account equity falls below the permitted maximum drawdown threshold at any time, the account will be considered breached and will be terminated.</p>
-  ${ex('Example: $100,000 account','10% maximum drawdown = $10,000.')}`}
+  ${dd([['Maximum drawdown','None','Account is breached only if it reaches 0'],['Maximum daily drawdown','None','No daily drawdown']])}
+  <h3>Maximum drawdown: None</h3>
+  <p>There is no maximum drawdown limit. The account is breached only if it reaches 0.</p>
+  <h3>Maximum daily drawdown: None</h3>
+  <p>There is no daily drawdown limit.</p>`}
 ]},
 
 {id:'withdrawals',icon:'pay',title:'Withdrawals',sub:'Payouts, requirements and timing',articles:[
@@ -181,18 +205,20 @@ export const RULES=[
   <ul><li>Cryptocurrency (USDT and other supported crypto assets).</li><li>UPI transfers.</li><li>Bank transfers.</li><li>E-wallet payments, where available.</li></ul>
   <p>Payment options may vary depending on the trader’s location, availability, and selected payout method.</p>
   <h3>Profit split</h3>
-  <p>The Absel Funding offers a progressive profit split of 80%, 85%, and up to 90% across all account types.</p>
+  ${SPLIT}
+  <h3>Payout frequency</h3>
+  ${FREQ}
   <p>Traders who consistently sustain the 90% level over multiple payouts may be considered for our upcoming Career Program. Top performers may be invited to trade from our physical office trading desk. The Career Program is coming soon and will be accessible through the platform.</p>`},
 
  {id:'requirements-before-withdrawing',title:'Requirements before withdrawing',body:`
   <p>Before submitting a withdrawal request, make sure all the following conditions are met:</p>
-  <ul><li>Your profit meets the minimum withdrawal requirement of 1% of the initial account size.</li><li>You have completed the minimum trading days on the funded account.</li><li>Your KYC verification is completed and approved.</li><li>Your account balance is above the starting balance.</li></ul>
+  <ul><li>Your profit meets the minimum withdrawal requirement of 1% of the initial account size.</li><li>You have completed the minimum trading days on the funded account.</li><li>Your KYC verification is completed and approved.</li><li>Your account balance is above the starting balance.</li><li>Your biggest winning trade is greater than your biggest losing trade.</li></ul>
   ${note('Important withdrawal rule','Once a withdrawal request is submitted, no further trading activity is allowed on the account. Placing any trade after requesting a payout will be treated as a hard breach, and the account may be terminated.')}`},
 
  {id:'withdrawal-processing-time',title:'How long does a withdrawal take?',body:`
   <h3>Processing time</h3>
   <p>Approved withdrawal requests are processed on weekdays (Monday to Friday) only. Once processed, the time required for funds to arrive depends on the selected payout method, such as crypto, UPI, bank transfer, or e-wallet.</p>
-  <p>Most payouts are completed within 24–48 hours after Wednesday processing.</p>
+  <p>Most payouts are completed within 24–48 hours after processing.</p>
   <h3>Possible delays</h3>
   <p>In some cases, withdrawals may take longer due to:</p>
   <ul><li>Weekends.</li><li>Public holidays.</li><li>Banking hours or payment-provider schedules.</li><li>Additional compliance or security checks.</li></ul>
