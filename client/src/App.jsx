@@ -10,6 +10,8 @@ import {CONTACT} from './contactInfo.js'
 import affiliate from './pages/affiliate.html?raw'
 
 const CHECKOUT=import.meta.env.VITE_CRM_CHECKOUT_URL
+const CRM_SIGNUP=import.meta.env.VITE_CRM_SIGNUP_URL
+const CRM_LOGIN=import.meta.env.VITE_CRM_LOGIN_URL
 const Raw=memo(({h})=><div dangerouslySetInnerHTML={{__html:h}}/>)
 const SZ=['5K','10K','25K','50K','78K','100K']
 const FEE='Refunded after 3rd payout'
@@ -165,9 +167,15 @@ function AuthModal({mode,setMode,onDone}){
 
 export default function App(){
   const [mode,setMode]=useState(null),[user,setUser]=useState(()=>{try{return JSON.parse(localStorage.getItem('taf_user'))}catch{return null}}),[open,setOpen]=useState(false),loc=useLocation()
+  const goAuth=(m)=>{
+    const url=m==='signup'?CRM_SIGNUP:CRM_LOGIN
+    if(!url)return setMode(m)
+    const ref=new URLSearchParams(location.search).get('ref')
+    location.href=ref&&m==='signup'?`${url}?ref=${encodeURIComponent(ref)}`:url
+  }
   useEffect(()=>{setOpen(false);if(loc.hash==='#plans')document.getElementById('plans')?.scrollIntoView();else scrollTo(0,0)},[loc.pathname,loc.hash])
   useEffect(()=>{const h=(e)=>{const a=e.target.closest('[data-auth]'),g=e.target.closest('[data-go]')
-    if(a)setMode(a.dataset.auth);if(g){e.preventDefault();document.getElementById(g.dataset.go)?.scrollIntoView()}}
+    if(a)goAuth(a.dataset.auth);if(g){e.preventDefault();document.getElementById(g.dataset.go)?.scrollIntoView()}}
     document.addEventListener('click',h);return()=>document.removeEventListener('click',h)},[])
   useFx(loc.pathname)
   const logout=()=>{localStorage.removeItem('taf_token');localStorage.removeItem('taf_user');setUser(null)}
@@ -182,11 +190,11 @@ export default function App(){
         :<><button className="btn" data-auth="login">Login</button><button className="btn p" data-auth="signup">Sign up</button></>}</div>
       <button className="menu" aria-label="Menu" aria-expanded={open} onClick={()=>setOpen(!open)}>☰</button></div></header>
     <main><Routes>
-      <Route path="/" element={<HomePage openAuth={setMode}/>}/>
+      <Route path="/" element={<HomePage openAuth={goAuth}/>}/>
       <Route path="/trading-rules" element={<RulesHub/>}/><Route path="/trading-rules/:cat" element={<RulesHub/>}/><Route path="/trading-rules/:cat/:art" element={<RulesHub/>}/>
       <Route path="/affiliate-program" element={<Raw h={affiliate}/>}/>
       <Route path="/contact-us" element={<Contact/>}/>
-      <Route path="*" element={<HomePage openAuth={setMode}/>}/>
+      <Route path="*" element={<HomePage openAuth={goAuth}/>}/>
     </Routes></main>
     <footer><div className="wrap foot">{logo(48)}
       <nav aria-label="Footer"><Link to="/">Home</Link><Link to="/trading-rules">Trading Rules</Link><Link to="/affiliate-program">Affiliate Program</Link><Link to="/contact-us">Contact Us</Link></nav>
