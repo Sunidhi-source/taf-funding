@@ -86,7 +86,7 @@ section {
   margin-bottom: 10px;
 }
 .eyebrow:before {
-  content: "none";
+  content: "";
 }
 .ar {
   font-style: normal;
