@@ -30,6 +30,8 @@ then appended to your Google Sheet through the Google Sheets API using a Google 
 Login and sign up are relayed to `CRM_LOGIN_URL` / `CRM_SIGNUP_URL` (JSON POST). Affiliate links: `https://yoursite.com/?ref=CODE`.
 
 ## Live chat (Text)
-The chat bubble is the `<TextWidget/>` from `@livechat/widget-react`, rendered once in `client/src/App.jsx`.
-Visitors click the bubble and chat live; you reply from the Text inbox (app.text.com or the Text mobile app).
-The organization ID is public. Override it with `VITE_TEXT_ORG_ID` if you ever change accounts.
+The chat loads from `client/index.html`, so it starts downloading with the HTML, in parallel with the app bundle
+(preconnect + preload + async loader). A static bubble is drawn in the first paint and swaps to the real widget when it is ready;
+if a visitor clicks it early, the chat opens as soon as it finishes loading. Logged-in users are passed to the chat
+by `App.jsx` (`set_customer_name` / `set_customer_email`). Visitors chat live; you reply from the Text inbox (app.text.com or the Text mobile app).
+The organization ID is public. Override it with `VITE_TEXT_ORG_ID`; `vite.config.js` injects it into `index.html`.

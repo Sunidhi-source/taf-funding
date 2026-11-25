@@ -94,7 +94,6 @@ export const RULES=[
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
-  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Challenge structure</h3>
   <ul><li>Achieve a 9% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>`},
 
@@ -111,7 +110,6 @@ export const RULES=[
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
-  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Challenge structure</h3>
   <p>Traders must successfully complete both phases to qualify for a funded account.</p>
   <ul><li><b>Phase 1: Performance evaluation.</b> Achieve an 8% profit target, follow all trading rules and respect the maximum drawdown rules. After completing Phase 1, the account enters a 24-hour review period. Once approved, the trader advances to Phase 2.</li><li><b>Phase 2: Verification.</b> Achieve a 5% profit target and continue following all trading rules. After Phase 2, the account undergoes another 24-hour review before funding.</li></ul>`},
@@ -126,14 +124,13 @@ export const RULES=[
   <ul><li>High-impact news releases.</li><li>Economic announcements.</li><li>Central-bank speeches.</li><li>Periods of increased market volatility.</li></ul>
   <p>There are no timing restrictions around news events. Traders remain responsible for managing their own risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur during news releases. Standard account rules continue to apply.</p>
   <h3>Minimum Trading Days Policy</h3>
-  <p>A trading day will only count towards your minimum trading days requirement if you achieve at least 0.5% profit of your initial account balance on that trading day.</p>
-  <p>If your profit is below 0.5%, that day will not be counted as a valid trading day.</p>
-  <div class="note ex"><b>Example</b><p>For a $10,000 trading account:</p><ul><li>0.5% profit = $50</li><li>Profit of $50 or more in a day = 1 valid trading day</li><li>Profit of $30 in a day = Not counted</li><li>Profit of $0 or a loss = Not counted</li></ul></div>
-  ${note('Important','You must generate at least 0.5% profit in a single trading day for it to qualify towards your minimum trading days requirement.')}
+  <p>A trading day will only count towards your minimum trading days requirement if you achieve at least 0.3% profit of your initial account balance on that trading day.</p>
+  <p>If your profit is below 0.3%, that day will not be counted as a valid trading day.</p>
+  <div class="note ex"><b>Example</b><p>For a $10,000 trading account:</p><ul><li>0.3% profit = $30</li><li>Profit of $30 or more in a day = 1 valid trading day</li><li>Profit of $20 in a day = Not counted</li><li>Profit of $0 or a loss = Not counted</li></ul></div>
+  ${note('Important','You must generate at least 0.3% profit in a single trading day for it to qualify towards your minimum trading days requirement.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
-  <p>Up to 20% of total trades may be ignored. Trades beyond that allowance may be reviewed.</p>
   <h3>Consistency rule</h3>
   <p>No single trade may account for 20% or more of your total overall profit. Your profits should be generated consistently across multiple trades rather than relying too heavily on one trade.</p>
   <p>(This rule can be removed by purchasing the applicable add-on.)</p>

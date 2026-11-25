@@ -1,6 +1,5 @@
 import {useEffect,useRef,useState,memo} from 'react'
 import {createPortal} from 'react-dom'
-import {TextWidget} from '@livechat/widget-react'
 import {Routes,Route,NavLink,Link,Navigate,useLocation,useParams} from 'react-router-dom'
 import {api} from './api.js'
 import {check,formatPhone,cleanPhone} from './validate.js'
@@ -10,17 +9,16 @@ import {RULES,ICONS} from './rulesData.js'
 import {CONTACT} from './contactInfo.js'
 import affiliate from './pages/affiliate.html?raw'
 
-const CHAT_ID=import.meta.env.VITE_TEXT_ORG_ID||'ed805c20-b73a-4a7c-955e-a8c5369fe2f2' // Text live chat organization ID (public)
 const CHECKOUT=import.meta.env.VITE_CRM_CHECKOUT_URL
 const CRM_SIGNUP=import.meta.env.VITE_CRM_SIGNUP_URL
 const CRM_LOGIN=import.meta.env.VITE_CRM_LOGIN_URL
 const Raw=memo(({h})=><div dangerouslySetInnerHTML={{__html:h}}/>)
 const SZ=['5K','10K','25K','50K','78K','100K']
-const FEE='Refunded after 3rd payout'
+const FEE='Refunded after 2nd payout'
 const PLANS=[
  {n:'1-Step',t:'Funding fast',p:[42,69,149,249,339,399],r:[['Profit target','9%'],['Max daily DD','4%'],['Max overall DD','8%'],['Profit split','80 / 85 / 90%'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every 12 days'],['Challenge fee',FEE]]},
  {n:'2-Step',t:'Industry standard',p:[35,59,129,219,270,349],r:[['Phase 1 target','8%'],['Phase 2 target','5%'],['Max daily DD','6%'],['Max overall DD','10%'],['Time limit','None'],['Platform','MT5'],['News trading','Allowed'],['Payouts','Every 12 days'],['Challenge fee',FEE]]},
- {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (challenge phase)','None'],['Overall DD (challenge phase)','None'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 18 days (12 with add-on)'],['Challenge fee','Non-refundable']]}]
+ {n:'Limitless',t:'High freedom',p:[49,99,179,289,349,459],r:[['Profit target','10%'],['Evaluation drawdown','None'],['Daily DD (challenge phase)','None'],['Overall DD (challenge phase)','None'],['Time limit','None'],['Platform','MT5'],['Payouts','Every 18 days (12 with add-on)'],['Challenge fee','Refundable after 2nd payout (add-on)']]}]
 
 /* decorative parallax backdrop; hidden until fx.js activates it */
 const FxBg=memo(()=><div id="fx-bg" aria-hidden="true" hidden>
@@ -169,6 +167,7 @@ function AuthModal({mode,setMode,onDone}){
 
 export default function App(){
   const [mode,setMode]=useState(null),[user,setUser]=useState(()=>{try{return JSON.parse(localStorage.getItem('taf_user'))}catch{return null}}),[open,setOpen]=useState(false),loc=useLocation()
+  useEffect(()=>{if(user&&window.LiveChatWidget){window.LiveChatWidget.call('set_customer_name',user.name);window.LiveChatWidget.call('set_customer_email',user.email)}},[user])
   const goAuth=(m)=>{
     const url=m==='signup'?CRM_SIGNUP:CRM_LOGIN
     if(!url)return setMode(m)
@@ -208,7 +207,6 @@ export default function App(){
       </div>
       <button className="btn" data-auth="signup">Start challenge <i className="ar">&rarr;</i></button></div>
       <div className="wrap legal"><span>© 2026 The Absel Funding. All rights reserved.</span><span>Trading involves risk. Challenge accounts are simulated and past performance is not a guarantee of future results.</span><span>Trade. Grow. Earn.<span className="slash">//</span></span></div></footer>
-    <TextWidget organizationId={CHAT_ID} {...(user?{customerName:user.name,customerEmail:user.email}:{})}/>
     <AuthModal mode={mode} setMode={setMode} onDone={setUser}/>
   </>
 }

@@ -9,4 +9,27 @@
 <meta property="og:image" content="/og-v2.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="/og-v2.png">
 <link rel="preload" as="image" href="/logo-v2.webp" type="image/webp"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,700;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-</head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<link rel="preconnect" href="https://cdn.livechatinc.com" crossorigin><link rel="dns-prefetch" href="https://api.livechatinc.com"><link rel="dns-prefetch" href="https://accounts.livechat.com">
+<link rel="preload" as="script" href="https://cdn.livechatinc.com/tracking.js">
+<style>
+#chat-ph{position:fixed;right:18px;bottom:18px;z-index:2147483000;width:60px;height:60px;border:0;border-radius:50%;padding:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,#f01420,#8c0007);box-shadow:0 6px 22px rgba(229,9,20,.45);transition:opacity .2s,transform .2s}
+#chat-ph:hover{transform:scale(1.06)}#chat-ph svg{width:28px;height:28px;fill:currentColor}
+#chat-ph.wait svg{opacity:.55}#chat-ph.gone{opacity:0;pointer-events:none}
+</style>
+<script>
+/* Live chat (Text/LiveChat): starts loading with the HTML, in parallel with the app bundle. */
+window.__lc=window.__lc||{};window.__lc.organizationId="__CHAT_ORG_ID__";
+(function(w,d,slice){
+  var api={_q:[],_h:null,_v:"2.0"};
+  function push(t){return function(){var a=[t,slice.call(arguments)];return api._h?api._h.apply(null,a):api._q.push(a)}}
+  api.on=push("on");api.once=push("once");api.off=push("off");api.call=push("call");
+  api.get=function(){if(!api._h)throw new Error("[LiveChatWidget] getters need the widget to be loaded");return api._h.apply(null,["get",slice.call(arguments)])};
+  w.LiveChatWidget=w.LiveChatWidget||api;
+  var s=d.createElement("script");s.async=true;s.src="https://cdn.livechatinc.com/tracking.js";
+  /* if blocked (ad blocker, offline) remove the placeholder instead of leaving a dead button */
+  s.onerror=function(){var b=d.getElementById("chat-ph");b&&b.remove()};
+  d.head.appendChild(s);
+  w.LiveChatWidget.on("ready",function(){var b=d.getElementById("chat-ph");if(b){b.classList.add("gone");setTimeout(function(){b.remove()},300)}});
+})(window,document,[].slice);
+</script>
+</head><body><div id="root"></div><button id="chat-ph" type="button" aria-label="Open live chat" onclick="this.classList.add('wait');LiveChatWidget.call('maximize')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></button><script type="module" src="/src/main.jsx"></script></body></html>

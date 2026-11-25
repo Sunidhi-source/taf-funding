@@ -239,7 +239,7 @@ function certNav(){
   marq.after(bar)
   let raf=0
   const nudge=dir=>{
-    const step=268                                   /* one certificate + gap */
+    const step=318                                   /* one certificate + gap */
     const anim=track.getAnimations().find(a=>a.animationName==='marq')
     cancelAnimationFrame(raf)
     if(!anim){marq.scrollBy({left:dir*step,behavior:'smooth'});return}  /* reduced motion: animation is off */
