@@ -28,3 +28,8 @@ then appended to your Google Sheet through the Google Sheets API using a Google 
 
 ## CRM
 Login and sign up are relayed to `CRM_LOGIN_URL` / `CRM_SIGNUP_URL` (JSON POST). Affiliate links: `https://yoursite.com/?ref=CODE`.
+
+## Live chat (Text)
+The chat bubble is the `<TextWidget/>` from `@livechat/widget-react`, rendered once in `client/src/App.jsx`.
+Visitors click the bubble and chat live; you reply from the Text inbox (app.text.com or the Text mobile app).
+The organization ID is public. Override it with `VITE_TEXT_ORG_ID` if you ever change accounts.

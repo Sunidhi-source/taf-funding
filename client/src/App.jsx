@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState,memo} from 'react'
 import {createPortal} from 'react-dom'
+import {TextWidget} from '@livechat/widget-react'
 import {Routes,Route,NavLink,Link,Navigate,useLocation,useParams} from 'react-router-dom'
 import {api} from './api.js'
 import {check,formatPhone,cleanPhone} from './validate.js'
@@ -9,6 +10,7 @@ import {RULES,ICONS} from './rulesData.js'
 import {CONTACT} from './contactInfo.js'
 import affiliate from './pages/affiliate.html?raw'
 
+const CHAT_ID=import.meta.env.VITE_TEXT_ORG_ID||'ed805c20-b73a-4a7c-955e-a8c5369fe2f2' // Text live chat organization ID (public)
 const CHECKOUT=import.meta.env.VITE_CRM_CHECKOUT_URL
 const CRM_SIGNUP=import.meta.env.VITE_CRM_SIGNUP_URL
 const CRM_LOGIN=import.meta.env.VITE_CRM_LOGIN_URL
@@ -206,7 +208,7 @@ export default function App(){
       </div>
       <button className="btn" data-auth="signup">Start challenge <i className="ar">&rarr;</i></button></div>
       <div className="wrap legal"><span>© 2026 The Absel Funding. All rights reserved.</span><span>Trading involves risk. Challenge accounts are simulated and past performance is not a guarantee of future results.</span><span>Trade. Grow. Earn.<span className="slash">//</span></span></div></footer>
-    {loc.pathname!=='/contact-us'&&<Link className="fx-fab" to="/contact-us" aria-label="Contact support"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></Link>}
+    <TextWidget organizationId={CHAT_ID} {...(user?{customerName:user.name,customerEmail:user.email}:{})}/>
     <AuthModal mode={mode} setMode={setMode} onDone={setUser}/>
   </>
 }
