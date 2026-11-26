@@ -3510,3 +3510,137 @@ html.fx-ready .ct-card {
   }
 }
 /* ===== END LAYOUT V4 ===== */
+
+/* MT5 badge */
+.mt5-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px 6px 8px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(20, 16, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font: 600 0.92rem var(--head);
+  letter-spacing: 0.01em;
+}
+.mt5-badge img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.hc-body h4 {
+  margin: 20px 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: none;
+  font-family: inherit;
+  color: #fff;
+}
+
+/* affiliate hero + bottom bar */
+.aff-hero-sec {
+  border: 0;
+  padding-top: 40px;
+  padding-bottom: 8px;
+}
+.aff-hero {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 38px;
+}
+.aff-hero h2 {
+  margin-bottom: 12px;
+}
+.aff-hero .sub {
+  margin-bottom: 22px;
+  max-width: 520px;
+}
+.aff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.aff-perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.aff-perks li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.03);
+}
+.aff-perks b {
+  font: 700 1.5rem var(--head);
+  color: #fff;
+}
+.aff-perks span {
+  color: var(--mut);
+  font-size: 0.95rem;
+}
+.btn.wa {
+  gap: 8px;
+  text-decoration: none;
+  border-color: #25d366;
+  color: #fff;
+}
+.btn.wa:hover {
+  background: #25d366;
+  color: #04210f;
+}
+.wa-ic {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+.aff-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 26px 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: linear-gradient(90deg, rgba(229, 9, 20, 0.12), rgba(255, 255, 255, 0.03));
+}
+.aff-bar h3 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+}
+.aff-bar .sub {
+  margin: 0;
+}
+@media (max-width: 800px) {
+  .aff-hero {
+    grid-template-columns: 1fr;
+    padding: 26px 22px;
+  }
+  .aff-bar {
+    padding: 22px;
+  }
+  .aff-bar .btn,
+  .aff-actions .btn {
+    width: 100%;
+  }
+}

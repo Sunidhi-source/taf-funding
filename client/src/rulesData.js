@@ -89,8 +89,6 @@ export const RULES=[
   <h3>News trading</h3>
   <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
   <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
-  ${WEEKEND}
-  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 8% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
@@ -105,8 +103,6 @@ export const RULES=[
   <h3>News trading</h3>
   <p>News trading is allowed during challenge phases and the funded stage. Traders may open, close, and manage positions during high-impact news releases, economic announcements, central-bank speeches, and periods of increased market volatility. There are no timing restrictions around news events.</p>
   <p>Traders remain responsible for managing risk during volatile market conditions. Slippage, spreads, and rapid price movements may occur. Standard account rules, including applicable drawdown limits, continue to apply.</p>
-  ${WEEKEND}
-  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The 10% maximum static drawdown rule continues to apply. Manage risk carefully when holding positions over the weekend.')}
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
@@ -132,8 +128,13 @@ export const RULES=[
   <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <h3>Consistency rule</h3>
-  <p>No single trade may account for 20% or more of your total overall profit. Your profits should be generated consistently across multiple trades rather than relying too heavily on one trade.</p>
-  <p>(This rule can be removed by purchasing the applicable add-on.)</p>
+  <p>The 20% Consistency Rule ensures that traders generate profits consistently rather than relying on one exceptionally profitable trade or one highly profitable trading day.</p>
+  <p><b>Rule:</b> No single trade and no single trading day can contribute more than 20% of your total requested payout.</p>
+  <h4>1. Understanding the 20% Rule</h4>
+  <p>Suppose you want to request a payout of $1,000.</p>
+  <p>20% of $1,000 = $200.</p>
+  <p>This means:</p>
+  <ul><li>Your profit from any single trade must not exceed $200.</li><li>Your total profit from any single trading day must not exceed $200.</li><li>You must distribute your profits across multiple trades and trading days.</li></ul>
   <h3>Big loss / big win rule</h3>
   <p>Before requesting a payout, your biggest winning trade must be greater than your biggest losing trade. In other words, your largest single-trade profit must exceed the amount of your largest single-trade loss.</p>
   ${ex('Example','If your biggest loss on a single trade is $200, you must record a winning trade of more than $200 on a single trade before requesting a payout. A $200 winning trade would not be enough; the winning amount must be greater than $200.')}
@@ -144,7 +145,8 @@ export const RULES=[
 
 {id:'weekend-holding',icon:'live',title:'Weekend Holding',sub:'Holding positions over the weekend',articles:[
  {id:'weekend-holding',title:'Weekend Holding',body:`
-  ${WEEKEND}`}
+  ${WEEKEND}
+  ${note('Important considerations','Markets may open with price gaps after the weekend. Slippage and increased volatility can occur at market open. The maximum static drawdown rule (8% on One-Step, 10% on Two-Step) continues to apply. Manage risk carefully when holding positions over the weekend.')}`}
 ]},
 
 {id:'drawdown-rules',icon:'rules',title:'Drawdown Rules',sub:'Daily and maximum drawdown limits',articles:[
