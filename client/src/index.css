@@ -3515,21 +3515,23 @@ html.fx-ready .ct-card {
 .mt5-badge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 18px 6px 8px;
+  gap: 8px;
+  padding: 5px 14px 5px 6px;
   margin-bottom: 18px;
   border-radius: 999px;
   background: rgba(20, 16, 18, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(6px);
   color: #fff;
-  font: 600 0.92rem var(--head);
-  letter-spacing: 0.01em;
+  font: 500 0.95rem/1 Barlow, system-ui, sans-serif;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
 }
 .mt5-badge img {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 0;
   flex: none;
 }
 
