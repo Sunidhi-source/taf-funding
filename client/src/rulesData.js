@@ -93,7 +93,9 @@ export const RULES=[
   <p>Tick scalping refers to extremely fast trades intended to capture very small price movements, such as:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <h3>Challenge structure</h3>
-  <ul><li>Achieve a 9% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>`},
+  <ul><li>Achieve a 9% profit target.</li><li>Follow all trading rules and respect the applicable drawdown rules.</li><li>After achieving the profit target, the account enters a 24-hour trading-behaviour review. Once approved, the trader proceeds to the funded stage.</li></ul>
+  <h3>Minimum trading days</h3>
+  <p>The minimum trading days are 6 days.</p>`},
 
  {id:'two-step-challenge-model',title:'The Absel Funding — Two-Step Challenge Model',body:`
   <p>The following rules apply to The Absel Funding Two-Step Challenge model, including the relevant funded stage, unless a rule is expressly limited to a particular phase.</p>
@@ -108,7 +110,9 @@ export const RULES=[
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
   <h3>Challenge structure</h3>
   <p>Traders must successfully complete both phases to qualify for a funded account.</p>
-  <ul><li><b>Phase 1: Performance evaluation.</b> Achieve an 8% profit target, follow all trading rules and respect the maximum drawdown rules. After completing Phase 1, the account enters a 24-hour review period. Once approved, the trader advances to Phase 2.</li><li><b>Phase 2: Verification.</b> Achieve a 5% profit target and continue following all trading rules. After Phase 2, the account undergoes another 24-hour review before funding.</li></ul>`},
+  <ul><li><b>Phase 1: Performance evaluation.</b> Achieve an 8% profit target, follow all trading rules and respect the maximum drawdown rules. After completing Phase 1, the account enters a 24-hour review period. Once approved, the trader advances to Phase 2.</li><li><b>Phase 2: Verification.</b> Achieve a 5% profit target and continue following all trading rules. After Phase 2, the account undergoes another 24-hour review before funding.</li></ul>
+  <h3>Minimum trading days</h3>
+  <p>The minimum trading days are 6 days.</p>`},
 
  {id:'limitless-challenge-model',title:'The Absel Funding — Limitless Challenge Model',body:`
   <p>The following rules apply to the Limitless model’s live funded account.</p>
@@ -124,6 +128,7 @@ export const RULES=[
   <p>If your profit is below 0.3%, that day will not be counted as a valid trading day.</p>
   <div class="note ex"><b>Example</b><p>For a $10,000 trading account:</p><ul><li>0.3% profit = $30</li><li>Profit of $30 or more in a day = 1 valid trading day</li><li>Profit of $20 in a day = Not counted</li><li>Profit of $0 or a loss = Not counted</li></ul></div>
   ${note('Important','You must generate at least 0.3% profit in a single trading day for it to qualify towards your minimum trading days requirement.')}
+  <p>Minimum trading days are 10 days (with add-on 6 days).</p>
   <h3>Tick scalping</h3>
   <p>Tick scalping refers to extremely fast trades intended to capture micro-movements, including:</p>
   <ul><li>Opening and closing trades within 120 seconds.</li><li>High-frequency micro-scalping.</li></ul>
@@ -220,6 +225,23 @@ export const RULES=[
   <h3>When does the processing time start?</h3>
   <p>Withdrawal processing begins once all of the following conditions are satisfied:</p>
   <ul><li>A withdrawal request has been submitted.</li><li>KYC verification is fully approved.</li><li>The trader has completed at least 5 trading days on the funded account.</li><li>The account meets the minimum withdrawal requirement (1% of the initial balance).</li><li>The account passes all risk and compliance checks.</li><li>No trades are placed after the withdrawal request; doing so is a hard breach.</li></ul>`}
+]},
+
+{id:'refund-policy',icon:'pay',title:'Refund Policy',sub:'Challenge fee refunds',articles:[
+ {id:'one-step-refund-policy',title:'The Absel Funding — One-Step Challenge Model',body:`
+  <p>Your challenge fee is refunded after your third payout.</p>
+  <h3>Fee refund</h3>
+  <ul><li>Fee refund after the third payout.</li></ul>`},
+
+ {id:'two-step-refund-policy',title:'The Absel Funding — Two-Step Challenge Model',body:`
+  <p>Your challenge fee is refunded after your third payout.</p>
+  <h3>Fee refund</h3>
+  <ul><li>Fee refund after the third payout.</li></ul>`},
+
+ {id:'limitless-refund-policy',title:'The Absel Funding — Limitless Challenge Model',body:`
+  <p>Your challenge fee is refunded after your second payout if you have selected the add-on.</p>
+  <h3>Fee refund</h3>
+  <ul><li>Fee refund after the second payout (if you have selected the add-on).</li></ul>`}
 ]},
 
 {id:'account-security-and-access-rules',icon:'live',title:'Account Security & Access Rules',sub:'IP policy and inactivity',articles:[

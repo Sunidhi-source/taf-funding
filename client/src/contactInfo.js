@@ -3,5 +3,5 @@ export const CONTACT={
   email:'admin@theabselfunding.com',
   address:'33 Ubi Ave 3, #07-50 VERTEX (Tower A), Singapore 408868, Singapore',
   phone:'+00 0000 000000',
-  whatsapp:'+00 0000 000000',
+  whatsapp:'',
 }
